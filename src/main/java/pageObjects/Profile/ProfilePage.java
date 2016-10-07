@@ -90,14 +90,12 @@ public class ProfilePage extends Base {
 	
 	public ProfilePage clickdeleteForTopAdvertise() {
 		selectFromAdvertisementContextMenu("Remove advertise");
-		isDisplayed(By.xpath("//div[@id='saveDraftDlg']/div/div[1]/div[2]/h3[contains(.,'Are you sure you want to delete this advertisement?')]"), 10);
+		isDisplayed(By.xpath("//div[@id='saveDraftDlg']//h3[contains(.,'Sure you want to remove')]"), 10);
 		return this;
 	}
 
 	public void assertConfirmationOnRemove(String confirmation){
-		/*assertTrue(find(By.xpath("//div[@id='saveDraftDlg']")).getAttribute("style")
-				.equals("display: block; padding-right: 17px;"), "Confirmation message is not displayed");*/
-		assertEquals(getTextOfElement(By.xpath("//div[@id='saveDraftDlg']/descendant::p")),confirmation,"You can find it in your previous advertisements.");
+		assertEquals(getTextOfElement(By.xpath("//div[@id='saveDraftDlg']/descendant::p")), confirmation, "Find removed ads in your history.");
 	}
 
 	public ProfilePage confirmDelete() {
@@ -116,14 +114,15 @@ public class ProfilePage extends Base {
 	}
 
 	public ProfilePage selectFromAdsMenu(String menuItem) {
-		click(By.xpath("//ads-profile/div/div/div"));
-		WebElement select = find(By.xpath("//ads-profile/div/div/div"));
+		isDisplayed(By.xpath("//ads-profile//button[text()='My ads ']/parent::div"), 10);
+		click(By.xpath("//ads-profile//button[text()='My ads ']/parent::div"));
+		WebElement select = find(By.xpath("//ads-profile//button[text()='My ads ']/parent::div"));
 		List<WebElement> options = select.findElements(By.tagName("li"));
 		for (WebElement option : options) {
 			if (menuItem.equals(option.getText().trim()))
 				option.click();
 		}
-		isDisplayed(By.xpath("//ad-tile/descendant::div[@class='lf-item-title']/h3"), 10);
+		isDisplayed(By.xpath("//ad-tile[1]/descendant::div[@class='lf-item-title']/h3"), 10);
 		return this;
 	}
 

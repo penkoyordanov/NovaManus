@@ -53,7 +53,7 @@ public class ManageAdvertiseTests extends BaseTest{
 		
 		System.out.println("Ad wich is going to be deleted: "+profile.getTitleLastAdvertise());
 		profile.clickdeleteForTopAdvertise();
-		profile.assertConfirmationOnRemove("You can find it in your previous advertisements.");
+		profile.assertConfirmationOnRemove("Find removed ads in your history.");
 		profile.confirmDelete();
 
 		assertNotEquals(adTitle,profile.getTitleLastAdvertise(),"Advertisement is not deleted from Live ads");
@@ -66,35 +66,28 @@ public class ManageAdvertiseTests extends BaseTest{
 		assertTrue(profile.assertRemovedAdisInOldAdsList(adTitle), "Deleted advertisement is not in previous ads");
 	}
 
-	/*@Test
-	public void DeleteDraftAd() throws InterruptedException {
+	@Test
+	public void DeleteDraftAd() {
 		profile = feed.clickProfileImage();
-		profile = profile.selectSavedDraftsFromAdsMenu();
-		title = profile.getTitleLastAdvertise();
+		profile = profile.selectFromAdsMenu("Drafts");
+		adTitle = profile.getTitleLastAdvertise();
 		profile.clickdeleteForTopAdvertise();
-		assertTrue(driver.findElement(By.xpath("//div[@id='saveDraftDlg']")).getAttribute("style")
-				.equals("display: block; padding-right: 17px;"));
+		profile.assertConfirmationOnRemove("This will permanently be deleted.");
 		profile.confirmDelete();
-		assertNotEquals(title,
-				driver.findElement(By.xpath("//simple-ad[1]/article/div[@class='mp-item-body']/a/h2")).getText(),
-				"Advertisement is not deleted from Drafts ads");
+		assertNotEquals(adTitle, profile.getTitleLastAdvertise(), "Advertisement is not deleted from Drafts ads");
 
 	}
 
 	@Test
-	public void DeletePreviousAd() throws InterruptedException {
+	public void DeletePreviousAd() {
 		profile = feed.clickProfileImage();
-		profile = profile.selectPreviousFromAdsMenu();
-		title = profile.getTitleLastAdvertise();
+		profile = profile.selectFromAdsMenu("History");
+		adTitle = profile.getTitleLastAdvertise();
 		profile.clickdeleteForTopAdvertise();
-		assertTrue(driver.findElement(By.xpath("//div[@id='saveDraftDlg']")).getAttribute("style")
-				.equals("display: block; padding-right: 17px;"), "Confirmation message is not displayed");
+		profile.assertConfirmationOnRemove("This will permanently be deleted.");
 		profile.confirmDelete();
-		assertNotEquals(title,
-				driver.findElement(By.xpath("//simple-ad[1]/article/div[@class='mp-item-body']/a/h2")).getText(),
-				"Advertisement is not deleted from Previous ads");
-
-	}*/
+		assertNotEquals(adTitle, profile.getTitleLastAdvertise(), "Advertisement is not deleted from Previous ads");
+	}
 
 	@AfterMethod
 	public void tearDown(ITestResult result) {

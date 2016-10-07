@@ -78,7 +78,7 @@ public class FeedPage extends Base {
 	}
 
 	public Boolean isAdvertiseSold (String adTitle){
-		return (isDisplayed(By.xpath("//tile-ad/descendant::h3[contains(.,'"+adTitle+"')]/../preceding::figure/div/div[text()='SOLD']"),10));
+        return (isDisplayed(By.xpath("//ad-tile/descendant::h3[contains(.,'" + adTitle + "')]/../preceding::figure/div/div[text()='SOLD']"), 10));
 
 	}
 
@@ -93,23 +93,24 @@ public class FeedPage extends Base {
     public void scrollWhileFindAd(String adTitle){
         boolean isAdAvailable=false;
         while (!isAdAvailable){
-            List<WebElement> adTitles=findElements(By.xpath("//tile-ad/article/div/div/h3"));
+            List<WebElement> adTitles = findElements(By.xpath("//ad-tile/article/div/div/h3"));
             for (WebElement title : adTitles) {
                 if(adTitle.equals(title.getText().trim())){
                     isAdAvailable=true;
                     break;
                 }
+                String js = "setTimeout(function(){window.scrollTo(0,document.body.scrollHeight)}, 2000);";
+                eDriver.executeScript(js);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
 
-            }
-            String js = "setTimeout(function(){window.scrollTo(0,document.body.scrollHeight)}, 2000);";
-			eDriver.executeScript(js);
-			try {
-				Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-		}
+
+        }
 
         }
 
@@ -176,8 +177,8 @@ public class FeedPage extends Base {
 
 	public boolean assertCategory(String expectedCategory){
 		boolean isAllCategoriesSame=true;
-		List<WebElement> categories= findElements(By.xpath("//tile-ad/article/div/h4/span"));
-		for (WebElement category : categories) {
+        List<WebElement> categories = findElements(By.xpath("//ad-tile/article/div/h4/span"));
+        for (WebElement category : categories) {
             if(!category.getText().toLowerCase().equals(expectedCategory.toLowerCase())){
                 isAllCategoriesSame=false;
             }

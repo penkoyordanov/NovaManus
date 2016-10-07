@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="false">
-  <listeners>
+  <!--<listeners>
     <listener class-name="listeners.EventHandler"/>
-  </listeners>
+  </listeners>-->
   <test name="RegressionTest">
     <classes>
       <class name="tests.MakeNewAdTest"/>
        <class name="tests.ManageAdvertiseTests"/>
-      <class name="tests.TestOnFullAd.AdDetailsTest"/>
+      <!--<class name="tests.TestOnFullAd.AdDetailsTest"/>-->
       <class name="tests.TestOnFullAd.AdvertisementCommentsTests"/>
       <class name="tests.FollowTests"/>
-      <class name="tests.RegularSignUpTest"/>
-      <class name="tests.StartNewChat"/>
+      <!--<class name="tests.RegularSignUpTest"/>
+      <class name="tests.StartNewChat"/>-->
       <class name="tests.TestOnLiveFeed.FeedFilterByCategory"/>
       <class name="tests.TestOnLiveFeed.SearchOnLiveFeedTests"/>
     </classes>
