@@ -3,14 +3,14 @@ package pageObjects.Profile;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import pageObjects.Common.Base;
 import pageObjects.FullAd.ViewAdPage;
-import pageObjects.LiveFeed.LiveFeedPage;
+import pageObjects.Feed.FeedPage;
 import pageObjects.NewAdPage;
 
 public class ProfilePage extends Base {
@@ -108,11 +108,11 @@ public class ProfilePage extends Base {
 	}
 
 
-	public LiveFeedPage clickToLiveFeedLink() {
+	public FeedPage clickToLiveFeedLink() {
 		eDriver.executeScript("scroll(0,0)");
 		click(liveFeedLnk);
 		assertTrue(isDisplayed(By.xpath("//ad-tile/descendant::h3"), 10),"Ads not displayed on the Live feed page");
-		return new LiveFeedPage(eDriver);
+		return new FeedPage(eDriver);
 	}
 
 	public ProfilePage selectFromAdsMenu(String menuItem) {
@@ -134,7 +134,7 @@ public class ProfilePage extends Base {
 		WebElement select = find(By.xpath("//div[@class='dropdown my-profile-menu active open']"));
 		List<WebElement> options = select.findElements(By.tagName("li"));
 		for (WebElement option : options) {
-			if ("Follow".equals(option.getText().trim()))
+			if ("Follow settings".equals(option.getText().trim()))
 				option.click();
 			break;
 		}
@@ -203,8 +203,10 @@ public class ProfilePage extends Base {
 				isCategoryDisplayed = true;
 			}
 		}else if (category.trim().equals("Make an offer")) {
-			if (getTextOfElement(firstAdPrice).trim().equals("Offer")) ;
-			isCategoryDisplayed = true;
+			if (getTextOfElement(firstAdPrice).trim().equals("Offer")) {
+				isCategoryDisplayed = true;
+			}
+
 		}else {
 			if (getTextOfElement(firstAdPrice).trim()
 					.equals(category)) {

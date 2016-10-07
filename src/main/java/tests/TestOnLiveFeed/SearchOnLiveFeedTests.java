@@ -6,6 +6,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 
+import static org.testng.Assert.*;
+
 /**
  * Created by penko.yordanov on 10-Aug-16.
  */
@@ -25,7 +27,9 @@ public class SearchOnLiveFeedTests extends BaseTest {
 
         feed.selectCountry(country);
         feed.selectCity(city);
+        assertTrue(feed.assertCityAppearedSearchField(city, country), "City is not as expected" + city);
         feed.clickSearchBtn();
+
 //        Assert.assertEquals(feed.getValueOfTopAdByAttributeAd("distance"),city);
 
     }

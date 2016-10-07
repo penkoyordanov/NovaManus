@@ -10,44 +10,47 @@ import pageObjects.FullAd.CommentsContainer;
 import pageObjects.FullAd.ViewAdPage;
 import tests.BaseTest;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 /**
  * Created by penko.yordanov on 12-May-16.
  */
 public class AdvertisementCommentsTests  extends BaseTest {
-    ViewAdPage adPage;
+    private ViewAdPage adPage;
     private int initialCommentsCount;
     private String userName = "lscott1k@ftc.gov";
     private String password = "$aLamura234";
-    CommentsContainer commentsContainer;
+    private CommentsContainer commentsContainer;
     @BeforeMethod
     public void setUp() {
         super.setUpBrowser();
         feed = super.signIn(userName,password);
-
+        initialCommentsCount = feed.getCommentsCountFirstAd();
         adPage=feed.openFirstAd();
         commentsContainer=new CommentsContainer(Browser.driver());
 
     }
 
     @AfterMethod
-    public void tearDown(ITestResult result) {
+    public void tearDown() {
 
         shutDown();
     }
 
     @Test
     public void postComment(){
-        initialCommentsCount=commentsContainer.getCommentsStatus();
+
 
         String comment=commentsContainer.generateComment();
         commentsContainer.postComment(comment);
 
         commentsContainer.assertCommentIsPosted(comment);
-        Assert.assertTrue(commentsContainer.getCommentsStatus()==initialCommentsCount+1);
+
+        assertEquals("Initial comments count:" + initialCommentsCount + ". Actual: " + commentsContainer.getCommentsStatus(), initialCommentsCount + 1, commentsContainer.getCommentsStatus());
 
     }
 
-    @Test
+   /* @Test
     public void deleteComment(){
         initialCommentsCount=commentsContainer.getCommentsStatus();
 
@@ -58,6 +61,6 @@ public class AdvertisementCommentsTests  extends BaseTest {
         commentsContainer.deleteComment(comment);
         commentsContainer.assertCommentIsDeleted(comment);
 
-    }
+    }*/
 
 }

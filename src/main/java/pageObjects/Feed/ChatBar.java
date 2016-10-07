@@ -1,4 +1,4 @@
-package pageObjects.LiveFeed;
+package pageObjects.Feed;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

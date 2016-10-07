@@ -4,7 +4,7 @@ import helpers.TestDataFaker;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import pageObjects.LiveFeed.ChatBar;
+import pageObjects.Feed.ChatBar;
 
 /**
  * Created by penko.yordanov on 07-Jun-16.

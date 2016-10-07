@@ -144,7 +144,6 @@ public class MakeNewAdTest extends BaseTest {
 
 		// Assert that price is displayed for advertisement with category Sell
 		// or Rent and category name is displayed for other categories
-//		assertTrue("Category is not displayed",profile.isCategoryDisplayed(category, currency, price));
 		assertTrue(profile.isCategoryDisplayed(category, currencyDefault, price), "Category is not displayed" + profile.getPriceOfLastAdvertise());
 	}
 

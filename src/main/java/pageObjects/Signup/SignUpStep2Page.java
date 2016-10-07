@@ -6,7 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.Assert;
 import pageObjects.Common.Base;
-import pageObjects.LiveFeed.LiveFeedPage;
+import pageObjects.Feed.FeedPage;
 
 /**
  * Created by penko.yordanov on 01-Jun-16.
@@ -35,11 +35,11 @@ public class SignUpStep2Page extends Base {
         Assert.assertTrue(isDisplayed(By.xpath("//div[@class='singup-profile-info']/h1[starts-with(.,'"+fullName+"')]")),"User full name is not displayed on step2");
     }
 
-    public LiveFeedPage clickLetsGoBtn(){
-        ((JavascriptExecutor) eDriver).executeScript("arguments[0].scrollIntoView();",find(goBtn));
+    public FeedPage clickLetsGoBtn() {
+        eDriver.executeScript("arguments[0].scrollIntoView();", find(goBtn));
         isDisplayed(goBtn,10);
         click(goBtn);
-        return new LiveFeedPage(eDriver);
+        return new FeedPage(eDriver);
     }
 ////strong[text()='Manchester']/following::span/span
     public void assertCityToFollowIsThere(String city){

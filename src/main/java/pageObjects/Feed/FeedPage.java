@@ -1,4 +1,4 @@
-package pageObjects.LiveFeed;
+package pageObjects.Feed;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,12 +14,12 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-public class LiveFeedPage extends Base {
+public class FeedPage extends Base {
 	private String filterOption;
 	
 	private By newAdButton=By.xpath("//div/a[@class='fa fa-plus header-icon']");
 
-	private By profilePicture = By.xpath("//a[@class='user-photo']/app-image");
+	private By profilePicture = By.xpath("//a[@class='user-photo']/*[1]");
 	
 	private By logo=By.xpath("//img[1][@alt='NOVAMANUS logo']");
 
@@ -30,9 +30,7 @@ public class LiveFeedPage extends Base {
 	private By searchBtn=By.xpath("//span[text()=\"Search\"]");
 
 
-
-
-	public LiveFeedPage(EventFiringWebDriver edriver){
+	public FeedPage(EventFiringWebDriver edriver) {
 		super(edriver);
 		assertTrue(isDisplayed(newAdButton,10),"Make ad button is not displayed");
 		isDisplayed(profilePicture);
@@ -48,39 +46,48 @@ public class LiveFeedPage extends Base {
 		return new ChatBar(eDriver);
 	}
 
-	public LiveFeedPage clickSearchOptionsBtn(){
+	public FeedPage clickSearchOptionsBtn() {
 		click(searchOptionsBtn);
-		isDisplayed(By.xpath("//div[@class='lfs-container open-lfs-options']/div/form"));
+		isDisplayed(By.xpath("//advanced-search/div/form"));
 		return this;
 	}
 
-	public LiveFeedPage selectCountry(String countryToSelect){
-		isDisplayed(By.xpath("//div[@class='lfs-container open-lfs-options']/div/form/div/select/option[text()='"+countryToSelect+"']"),10);
-		Select cSelect=new Select(find(By.xpath("//div[@class='lfs-container open-lfs-options']/div/form/div/select")));
+	public FeedPage selectCountry(String countryToSelect) {
+		isDisplayed(By.xpath("//advanced-search/div/form/div[1]/select/option[text()='" + countryToSelect + "']"), 10);
+		Select cSelect = new Select(find(By.xpath("//advanced-search/div/form/div[1]/select")));
 		cSelect.selectByVisibleText(countryToSelect);
 		return this;
 	}
-	public LiveFeedPage selectCity(String cityToSelect){
-		isDisplayed(By.xpath("//div[@class='lfs-container open-lfs-options']/div/form/div[2]/select/option[text()='"+cityToSelect+"']"),10);
-		Select cSelect=new Select(find(By.xpath("//div[@class='lfs-container open-lfs-options']/div/form/div[2]/select")));
+
+	public FeedPage selectCity(String cityToSelect) {
+		isDisplayed(By.xpath("//advanced-search/div/form/div[2]/select/option[text()='" + cityToSelect + "']"), 10);
+		Select cSelect = new Select(find(By.xpath("//advanced-search/div/form/div[2]/select")));
 		cSelect.selectByVisibleText(cityToSelect);
 		return this;
 	}
 
-	public LiveFeedPage clickSearchBtn(){
+	public FeedPage clickSearchBtn() {
 		click(searchBtn);
 		return this;
 	}
 
 	public ViewAdPage openFirstAd(){
-        isDisplayed(firstAd,10);
-		click(firstAd);
+		isDisplayed(By.xpath("//ad-tile[1]//div[@class='lf-item-title']"), 10);
+		click(By.xpath("//ad-tile[1]//div[@class='sold-price']"));
 		return new ViewAdPage(eDriver);
 	}
 
 	public Boolean isAdvertiseSold (String adTitle){
 		return (isDisplayed(By.xpath("//tile-ad/descendant::h3[contains(.,'"+adTitle+"')]/../preceding::figure/div/div[text()='SOLD']"),10));
 
+	}
+
+	public int getCommentsCountFirstAd() {
+		isDisplayed(By.xpath("//ad-tile[1]//div[@class='lf-item-title']"), 10);
+		String commentsFullString = getTextOfElement(By.xpath("//ad-tile[1]//div[@class='lf-statistic']//span[2]"));
+		String[] commentssplit = commentsFullString.split(" ");
+
+		return Integer.parseInt(commentssplit[0]);
 	}
 
     public void scrollWhileFindAd(String adTitle){
@@ -95,14 +102,14 @@ public class LiveFeedPage extends Base {
 
             }
             String js = "setTimeout(function(){window.scrollTo(0,document.body.scrollHeight)}, 2000);";
-            ((JavascriptExecutor) eDriver).executeScript(js);
-            try {
-                Thread.sleep(2000);
+			eDriver.executeScript(js);
+			try {
+				Thread.sleep(2000);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        };
+		}
 
         }
 
@@ -177,6 +184,13 @@ public class LiveFeedPage extends Base {
 
 		}
 		return isAllCategoriesSame;
+	}
+
+	public boolean assertCityAppearedSearchField(String city, String country) {
+		////div[@class='live-feed-search']//div[@class='lfsk-item']//text()
+		isDisplayed(By.xpath("//div[@class='live-feed-search']//div[@class='lfsk-item']"));
+		System.out.println(getTextOfElement(By.xpath("//div[@class='live-feed-search']//div[@class='lfsk-item']")));
+		return getTextOfElement(By.xpath("//div[@class='live-feed-search']//div[@class='lfsk-item']")).equals(city + " " + country);
 	}
 
 	public LoginPage loggout(){

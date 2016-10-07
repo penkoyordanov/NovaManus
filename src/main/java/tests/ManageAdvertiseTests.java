@@ -38,7 +38,7 @@ public class ManageAdvertiseTests extends BaseTest{
 		assertTrue(profile.isSold(),"Sold overlay not displayed");
 
 
-		// Verify that Sold advertise is shown with Sold overlay on LiveFeed page
+		// Verify that Sold advertise is shown with Sold overlay on Feed page
 
 		feed = profile.clickToLiveFeedLink();
 		feed.scrollWhileFindAd(adTitle);
@@ -63,7 +63,7 @@ public class ManageAdvertiseTests extends BaseTest{
 		// Thread.sleep(2000);
 		
 		profile.selectFromAdsMenu("History");
-		assertTrue(profile.assertRemovedAdisInOldAdsList(adTitle), "Deleted advertisement is not in previous ads");;
+		assertTrue(profile.assertRemovedAdisInOldAdsList(adTitle), "Deleted advertisement is not in previous ads");
 	}
 
 	/*@Test

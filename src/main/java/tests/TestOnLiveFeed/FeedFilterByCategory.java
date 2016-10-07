@@ -1,10 +1,9 @@
 package tests.TestOnLiveFeed;
 
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pageObjects.Common.Browser;
-import pageObjects.LiveFeed.FilterContainer;
+import pageObjects.Feed.FilterContainer;
 import tests.BaseTest;
 
 /**

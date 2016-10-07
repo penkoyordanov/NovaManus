@@ -1,4 +1,4 @@
-package pageObjects.LiveFeed;
+package pageObjects.Feed;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
@@ -6,7 +6,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 /**
  * Created by penko.yordanov on 10-Aug-16.
  */
-public class FilterContainer extends LiveFeedPage{
+public class FilterContainer extends FeedPage {
     private By filterMenuArrow = By.xpath("//i[@title='Filter feed by']");
 
     public FilterContainer(EventFiringWebDriver eDriver){
@@ -18,7 +18,7 @@ public class FilterContainer extends LiveFeedPage{
         isDisplayed(By.xpath("//nav[@class=\"left-nav\"]//*[@class='fa fa-angle-left']"), 10);
     }
 
-    public LiveFeedPage selectFilterOption(String filterOption){
+    public FeedPage selectFilterOption(String filterOption) {
 
         isDisplayed(By.xpath("//li//span[text()='Info board']"));
         click(By.xpath("//li//span[text()='" + filterOption + "']"));

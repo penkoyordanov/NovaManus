@@ -2,11 +2,10 @@ package pageObjects;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import pageObjects.Common.Base;
-import pageObjects.LiveFeed.LiveFeedPage;
+import pageObjects.Feed.FeedPage;
 
 public class LoginPage extends Base {
 
@@ -41,10 +40,10 @@ public class LoginPage extends Base {
 	public boolean assertPresenceValidationMessege(){
 		return isDisplayed(By.xpath("//*[@class='input-error-text shake'][text()='Username or password is incorrect.']"),10);
 	}
-	
-	public LiveFeedPage submitSignIn(){
+
+	public FeedPage submitSignIn() {
 		click(signInBtn);
-		return new LiveFeedPage(eDriver);
+		return new FeedPage(eDriver);
 	}
 
 

@@ -8,12 +8,11 @@ import org.junit.runners.MethodSorters;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.Common.Browser;
 import pageObjects.FrontPage;
-import pageObjects.LiveFeed.LiveFeedPage;
+import pageObjects.Feed.FeedPage;
 import pageObjects.LoginPage;
 import pageObjects.Profile.ProfilePage;
 
@@ -61,7 +60,7 @@ public class LoginTests {
 	public void successfullSignIn() {
 		loginPage.typeUsername(username);
 		loginPage.typePassword(password);
-		LiveFeedPage liveFeed = loginPage.submitSignIn();
+        FeedPage liveFeed = loginPage.submitSignIn();
        /* try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -71,7 +70,7 @@ public class LoginTests {
 		profile.assertProfileNames(firstNameExpected,lastNameExpected);
 
         //Assert SessionStorage
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) eDriver;
+        JavascriptExecutor jsExecutor = eDriver;
         String userJSON = (String) jsExecutor
                 .executeScript("return sessionStorage.user;");
         assertEquals(lastNameExpected, loginPage.getAttributeValueJSON(userJSON,"lastName"));

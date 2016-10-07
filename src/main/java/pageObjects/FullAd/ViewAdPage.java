@@ -6,7 +6,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.Common.Base;
-import pageObjects.LiveFeed.LiveFeedPage;
+import pageObjects.Feed.FeedPage;
 
 import static org.testng.Assert.*;
 
@@ -25,10 +25,10 @@ public class ViewAdPage extends Base {
 
 
 	}
-	
-	public LiveFeedPage clickToLiveFeedLink(){
+
+	public FeedPage clickToLiveFeedLink() {
 		find(By.linkText("Live feed")).click();
-		return new LiveFeedPage(eDriver);
+		return new FeedPage(eDriver);
 	}
 
 	public boolean assertTitleFullAd(String title){
@@ -82,7 +82,27 @@ public class ViewAdPage extends Base {
 	
 	public boolean isCategoryDisplayed(String category, String currency, String price){
 		boolean isCategoryDisplayed=false;
-		if (category.equals("Sell") || category.equals("Rent")) {
+		switch (category) {
+			case "Sell":
+				if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[1]")).trim().equals(currency + " " + price)) {
+					isCategoryDisplayed = true;
+				}
+			case "Rent":
+				if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[1]")).trim().equals(currency + " " + price)) {
+					isCategoryDisplayed = true;
+				}
+			case "Give away":
+				if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[2]"))
+						.trim().equals("Free")) {
+					isCategoryDisplayed = true;
+				}
+			default:
+				if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[2]"))
+						.trim().equals(category)) {
+					isCategoryDisplayed = true;
+				}
+		}
+		/*if (category.equals("Sell") || category.equals("Rent")) {
 			if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[1]")).trim().equals(currency + " " + price)){
 						isCategoryDisplayed=true;
 					}	
@@ -98,7 +118,7 @@ public class ViewAdPage extends Base {
 					.trim().equals(category)){
 				isCategoryDisplayed=true;
 			}
-		}
+		}*/
 		return isCategoryDisplayed;
 	}
 	

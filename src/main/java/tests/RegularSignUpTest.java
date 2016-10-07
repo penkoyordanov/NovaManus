@@ -9,7 +9,7 @@ import org.testng.annotations.*;
 
 import pageObjects.*;
 import pageObjects.Common.Browser;
-import pageObjects.LiveFeed.LiveFeedPage;
+import pageObjects.Feed.FeedPage;
 import pageObjects.Profile.ProfilePage;
 import pageObjects.Signup.SignUpPage;
 import pageObjects.Signup.SignUpStep2Page;
@@ -22,10 +22,10 @@ public class RegularSignUpTest {
 	SignUpPage sup;
 //	GetTestData testData;
 
-	LoginPage loginPage;
+	private LoginPage loginPage;
 	WebDriver driver;
 	WebDriverWait wait;
-	EventFiringWebDriver eDriver;
+	private EventFiringWebDriver eDriver;
 
 	/*@BeforeTest
 	public static void setUpBrowse() {
@@ -64,8 +64,8 @@ public class RegularSignUpTest {
 		step2.assertCityToFollowIsThere("Pernik");
 		step2=step2.followSuggested("Pernik");
 //		step2=step2.followSuggested("Gregory");
-		LiveFeedPage feed=step2.clickLetsGoBtn();
-		ProfilePage profile=feed.clickProfileImage();
+		FeedPage feed = step2.clickLetsGoBtn();
+		ProfilePage profile = feed.clickProfileImage();
 		profile.assertProfileNames(registerFormValues.get("firstName"),registerFormValues.get("lastName"));
 		/*FollowPage follow=profile.selectFollowFromProfileMenu();
 		follow.assertIsFollowed("Sofia");
@@ -103,6 +103,7 @@ public class RegularSignUpTest {
 		try {
 			Thread.sleep(1000);
 		} catch (Exception e) {
+			System.out.println(e);
 		}finally {
 			eDriver.quit();
 		}
