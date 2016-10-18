@@ -30,7 +30,7 @@
     <classes>
       <class name="tests.StartNewChat"/>
       <class name="tests.TestOnLiveFeed.FeedFilterByCategory"/>
-      <class name="tests.TestOnLiveFeed.SearchOnLiveFeedTests"/>
+      <class name="tests.TestOnLiveFeed.SearchOnFeedTests"/>
     </classes>
   </test>
 </suite> <!-- Suite -->

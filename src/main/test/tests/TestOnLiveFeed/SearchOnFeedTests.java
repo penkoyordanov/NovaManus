@@ -12,7 +12,7 @@ import static org.testng.Assert.*;
  * Search on Feed tests
  */
 @Listeners(listeners.TestListener.class)
-public class SearchOnLiveFeedTests extends BaseTest {
+public class SearchOnFeedTests extends BaseTest {
 
     @BeforeClass
     public void setUp() {
@@ -24,11 +24,7 @@ public class SearchOnLiveFeedTests extends BaseTest {
     }
 
     @AfterClass
-    public void tearDown(ITestResult result) {
-        if (ITestResult.FAILURE == result.getStatus()) {
-            Utility.captureScreenshot(eDriver, result.getName());
-
-        }
+    public void tearDown() {
         shutDown();
     }
 

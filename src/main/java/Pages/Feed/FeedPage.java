@@ -179,7 +179,7 @@ public class FeedPage extends Base {
         List<WebElement> categories = findElements(By.xpath("//ad-tile/article/div/h4/span"));
         for (WebElement category : categories) {
             //Check if actual category of each ad in the feed is the same of expected category
-            if (!(!category.getText().trim().toLowerCase().equals(expectedCategory.toLowerCase()) || category.getText().trim().equals("SOLD"))) {
+            if (!(category.getText().trim() != expectedCategory || category.getText().trim() == "SOLD")) {
                 isAllAdsSameCategory = false;
             }
 
