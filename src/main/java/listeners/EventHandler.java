@@ -98,7 +98,7 @@ public class EventHandler implements WebDriverEventListener {
 		}
 	}
 
-/*	public void afterChangeValueOf(WebElement element, WebDriver driver) {
+/*	public void afterChangeValueOf(WebElement element, WebDriver eDriver) {
 		element = element;
 		String changedValue = "";
 		try {

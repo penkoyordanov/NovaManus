@@ -5,26 +5,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObjects.Common.Browser;
+import Pages.Common.Browser;
 
 import java.nio.charset.Charset;
 
-import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-
-/**
- * Created by penko.yordanov on 13-May-16.
- */
 public class GenerateRanomAddresses {
-WebDriver driver;
+    private WebDriver driver;
     private int initialCommentsCount;
     @BeforeMethod
     public void setUp() {
         Browser.initChrome();
-        this.driver = Browser.driver();
+        this.driver = Browser.eDriver();
         driver.get("http://www.mapcrunch.com/");
         driver.findElement(By.id("go-button")).click();
         try {
@@ -94,26 +89,26 @@ WebDriver driver;
 
 
 
-        driver.get("http://www.mapcrunch.com/");
-       *//* driver.findElement(By.id("options-button")).click();
-        driver.findElement(By.linkText("Europe")).click();
+        eDriver.get("http://www.mapcrunch.com/");
+       *//* eDriver.findElement(By.id("options-button")).click();
+        eDriver.findElement(By.linkText("Europe")).click();
         Thread.sleep(1000);
-        driver.findElement(By.id("cities")).click();
+        eDriver.findElement(By.id("cities")).click();
         Thread.sleep(1000);
-        driver.findElement(By.id("options-button")).click();
+        eDriver.findElement(By.id("options-button")).click();
         Thread.sleep(1000);
-        driver.findElement(By.id("go-button")).click();
-        System.out.println(driver.findElement(By.id("info-address-first")).getText());*//*
-        driver.findElement(By.id("go-button")).click();
+        eDriver.findElement(By.id("go-button")).click();
+        System.out.println(eDriver.findElement(By.id("info-address-first")).getText());*//*
+        eDriver.findElement(By.id("go-button")).click();
         Thread.sleep(2000);
-        System.out.println(driver.findElement(By.id("address")).getText());
+        System.out.println(eDriver.findElement(By.id("address")).getText());
 
 
         *//*for (int i = 0; i < 100; i++) {
             Thread.sleep(2000);
-            driver.findElement(By.id("go-button")).click();
+            eDriver.findElement(By.id("go-button")).click();
             Thread.sleep(2000);
-            System.out.println(driver.findElement(By.id("address")).getText());
+            System.out.println(eDriver.findElement(By.id("address")).getText());
         }*//*
 
 

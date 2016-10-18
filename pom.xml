@@ -74,10 +74,10 @@ directory}/screenshots</screenshotDirectory>
 					<desiredPlatform>${platform}</desiredPlatform>
 					<desiredBrowserVersion>${browserVersion}
 					</desiredBrowserVersion>
-					&lt;!&ndash;Set properties passed in by the driver
+					&lt;!&ndash;Set properties passed in by the eDriver
                     binary downloader&ndash;&gt;
-					<webdriver.chrome.driver>${webdriver.chrome.driver}
-					</webdriver.chrome.driver>
+					<webdriver.chrome.eDriver>${webdriver.chrome.eDriver}
+					</webdriver.chrome.eDriver>
 
 				</systemProperties>
 				<includes>
@@ -117,7 +117,7 @@ directory}/screenshots</screenshotDirectory>
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
 		<!--	<dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-chrome-driver</artifactId>
+                <artifactId>selenium-chrome-eDriver</artifactId>
                 <version>3.0.0</version>
             </dependency>-->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
