@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class EventHandler implements WebDriverEventListener {
 	private By finalFindBy;
-	private String actualValue;
 
 	public void beforeNavigateTo(String url, WebDriver driver) {
 		System.out.println("Before Navigating To : " + url + ", my url was: "
@@ -91,7 +90,7 @@ public class EventHandler implements WebDriverEventListener {
 	}
 
 	public void beforeChangeValueOf(WebElement element, WebDriver driver) {
-		actualValue = element.getText();
+        String actualValue = element.getText();
 
 		// What if the element is not visible anymore?
 		if (actualValue.isEmpty()) {

@@ -1,6 +1,8 @@
 package tests.TestOnLiveFeed;
 
+import listeners.Utility;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pageObjects.Common.Browser;
 import pageObjects.Feed.FilterContainer;
@@ -9,20 +11,20 @@ import tests.BaseTest;
 /**
  * Created by penko.yordanov on 03-Oct-16.
  */
+@Listeners(listeners.TestListener.class)
 public class FeedFilterByCategory extends BaseTest {
-    //    private int initialCommentsCount;
-    private String userName = "lscott1k@ftc.gov";
-    private String password = "$aLamura234";
     private FilterContainer filterContainer;
 
     @BeforeClass
     public void setUp() {
         super.setUpBrowser();
+        String userName = "lscott1k@ftc.gov";
+        String password = "$aLamura234";
         feed = super.signIn(userName, password);
         filterContainer = new FilterContainer(Browser.driver());
     }
 
-    @Test(dataProvider = "getData")
+    @Test(dataProvider = "getData", description = "Filter Feed by category")
     public void FilterAdsByCategoryInfoBoard(String infoCategory, String category) {
         filterContainer.openFilterMenu();
         filterContainer.selectFilterOption(infoCategory);
@@ -38,8 +40,11 @@ public class FeedFilterByCategory extends BaseTest {
     }
 
     @AfterClass
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            Utility.captureScreenshot(eDriver, result.getName());
 
+        }
         shutDown();
     }
 

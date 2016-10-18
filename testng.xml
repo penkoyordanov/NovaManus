@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="false">
-  <!--<listeners>
-    <listener class-name="listeners.EventHandler"/>
-  </listeners>-->
-  <test name="RegressionTest">
+<suite name="Regression Suite" parallel="false">
+  <listeners>
+    <listener class-name="listeners.TestListener"/>
+  </listeners>
+  <test name="CRUD advertisement">
     <classes>
       <class name="tests.MakeNewAdTest"/>
        <class name="tests.ManageAdvertiseTests"/>
-      <!--<class name="tests.TestOnFullAd.AdDetailsTest"/>-->
-      <class name="tests.TestOnFullAd.AdvertisementCommentsTests"/>
+      <class name="tests.TestOnFullAd.AdDetailsTest"/>
+    </classes>
+  </test>
+  <test name="CRD Comments on advertisement">
+    <classes>
+      <class name="tests.TestOnFullAd.CRD_Comments"/>
+    </classes>
+  </test>
+  <test name="CRUD user">
+    <classes>
+      <class name="tests.RegularSignUpTest"/>
+    </classes>
+  </test>
+  <test name="Follow">
+    <classes>
       <class name="tests.FollowTests"/>
-      <!--<class name="tests.RegularSignUpTest"/>
-      <class name="tests.StartNewChat"/>-->
+    </classes>
+  </test>
+  <test name="Feed">
+    <classes>
+      <class name="tests.StartNewChat"/>
       <class name="tests.TestOnLiveFeed.FeedFilterByCategory"/>
       <class name="tests.TestOnLiveFeed.SearchOnLiveFeedTests"/>
     </classes>
-  </test> <!-- RegressionTest -->
+  </test>
 </suite> <!-- Suite -->

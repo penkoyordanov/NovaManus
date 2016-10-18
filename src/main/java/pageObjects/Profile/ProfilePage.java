@@ -142,7 +142,7 @@ public class ProfilePage extends Base {
 
 	public ViewAdPage clickAdImage(String title) {
 		isDisplayed(By.xpath("//ad-tile[1]/descendant::img"),10);
-		click(By.xpath("//ad-tile[1]/descendant::img"));
+		click(By.xpath("//ad-tile[1]//app-image"));
 		return new ViewAdPage(eDriver);
 	}
 

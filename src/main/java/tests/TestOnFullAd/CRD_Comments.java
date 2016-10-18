@@ -1,9 +1,10 @@
 package tests.TestOnFullAd;
 
-import org.testng.Assert;
+import listeners.Utility;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.Common.Browser;
 import pageObjects.FullAd.CommentsContainer;
@@ -13,31 +14,34 @@ import tests.BaseTest;
 import static org.testng.AssertJUnit.assertEquals;
 
 /**
- * Created by penko.yordanov on 12-May-16.
+ * Tests for CRUD comments on advertisement
  */
-public class AdvertisementCommentsTests  extends BaseTest {
-    private ViewAdPage adPage;
+@Listeners(listeners.TestListener.class)
+public class CRD_Comments extends BaseTest {
     private int initialCommentsCount;
-    private String userName = "lscott1k@ftc.gov";
-    private String password = "$aLamura234";
     private CommentsContainer commentsContainer;
     @BeforeMethod
     public void setUp() {
         super.setUpBrowser();
-        feed = super.signIn(userName,password);
+        String userName = "lscott1k@ftc.gov";
+        String password = "$aLamura234";
+        feed = super.signIn(userName, password);
         initialCommentsCount = feed.getCommentsCountFirstAd();
-        adPage=feed.openFirstAd();
+        ViewAdPage adPage = feed.openFirstAd();
         commentsContainer=new CommentsContainer(Browser.driver());
 
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            Utility.captureScreenshot(eDriver, result.getName());
 
+        }
         shutDown();
     }
 
-    @Test
+    @Test(description = "Create new comment for advertisement ")
     public void postComment(){
 
 
@@ -50,7 +54,7 @@ public class AdvertisementCommentsTests  extends BaseTest {
 
     }
 
-   /* @Test
+    @Test(description = "Delete comment from advertisement ")
     public void deleteComment(){
         initialCommentsCount=commentsContainer.getCommentsStatus();
 
@@ -61,6 +65,6 @@ public class AdvertisementCommentsTests  extends BaseTest {
         commentsContainer.deleteComment(comment);
         commentsContainer.assertCommentIsDeleted(comment);
 
-    }*/
+    }
 
 }

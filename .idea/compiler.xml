@@ -22,11 +22,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="NM" />
         <module name="NovaManus" />
+        <module name="NovaManus_API_Tests" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="NM" target="1.5" />
       <module name="NovaManus" target="1.8" />
+      <module name="NovaManus_API_Tests" target="1.5" />
+      <module name="RestTesting" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

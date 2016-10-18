@@ -10,11 +10,6 @@ import pageObjects.Feed.ChatBar;
  * Created by penko.yordanov on 07-Jun-16.
  */
 public class StartNewChat extends BaseTest{
-    private String chateInitiatorName="Martha";
-    private String userName = "mgarrett10@ca.gov";
-    private String password = "$aLamura234";
-    private String chateeFirstName ="Gregory";
-    private String chateeFullName ="Gregory Wagner";
     private final String message=TestDataFaker.getChatMessage();
     EventFiringWebDriver eDriver;
 
@@ -34,14 +29,18 @@ public class StartNewChat extends BaseTest{
 
         // Navigate to Sign In page of NovaManus and sign in with username and
         // password
-        feed = super.signIn(userName,password);
+        String password = "$aLamura234";
+        String userName = "mgarrett10@ca.gov";
+        feed = super.signIn(userName, password);
     }
 
-    @Test
+    @Test(enabled = false)
     public void regularChatWithUser(){
         ChatBar chat=feed.openChat();
         chat.clickNewChatButton();
+        String chateeFirstName = "Gregory";
         chat.searchUser(chateeFirstName);
+        String chateeFullName = "Gregory Wagner";
         chat.assertUserIsFound(chateeFullName);
         chat.selectUserFromSuggestions(chateeFullName);
         chat.assertChatIsCreated(chateeFullName);
@@ -54,6 +53,7 @@ public class StartNewChat extends BaseTest{
         loginPage=feed.loggout();
         feed=signIn("test@novamanus.com","123456");
         chat=feed.openChat();
+        String chateInitiatorName = "Martha";
         chat.assertLastMessageIsInConversationOverview(chateInitiatorName,message);
 
     }

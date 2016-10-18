@@ -20,16 +20,9 @@ import pageObjects.Profile.ProfilePage;
 public class LoginTests {
 	private static LoginPage loginPage;
 	private static EventFiringWebDriver eDriver;
-    private static String username="test@novamanus.com";
-    private static String password="123456";
-    private static String firstNameExpected="Gregory";
-    private static String lastNameExpected="Wagner";
-    private static String phone="+35912345678";
-    private static String contactID="1";
-    private static String userID="1";
 
-	@BeforeMethod
-	public static void setUpBrowse() {
+    @BeforeMethod
+    public static void setUpBrowse() {
 //		Browser.initChrome();
 		Browser.initChrome();
 		eDriver = Browser.driver();
@@ -58,8 +51,10 @@ public class LoginTests {
 	// Successful Sign In
 	@Test//(priority = 2)
 	public void successfullSignIn() {
-		loginPage.typeUsername(username);
-		loginPage.typePassword(password);
+        String username = "test@novamanus.com";
+        loginPage.typeUsername(username);
+        String password = "123456";
+        loginPage.typePassword(password);
         FeedPage liveFeed = loginPage.submitSignIn();
        /* try {
             Thread.sleep(2000);
@@ -67,7 +62,9 @@ public class LoginTests {
             e.printStackTrace();
         }*/
         ProfilePage profile=liveFeed.clickProfileImage();
-		profile.assertProfileNames(firstNameExpected,lastNameExpected);
+        String lastNameExpected = "Wagner";
+        String firstNameExpected = "Gregory";
+        profile.assertProfileNames(firstNameExpected, lastNameExpected);
 
         //Assert SessionStorage
         JavascriptExecutor jsExecutor = eDriver;
@@ -76,8 +73,11 @@ public class LoginTests {
         assertEquals(lastNameExpected, loginPage.getAttributeValueJSON(userJSON,"lastName"));
         assertEquals(firstNameExpected, loginPage.getAttributeValueJSON(userJSON,"firstName"));
         assertEquals(username, loginPage.getAttributeValueJSON(userJSON,"email"));
+        String contactID = "1";
         assertEquals(contactID, loginPage.getAttributeValueJSON(userJSON,"contactId"));
+        String userID = "1";
         assertEquals(userID, loginPage.getAttributeValueJSON(userJSON,"id"));
+        String phone = "+35912345678";
         assertEquals(phone, loginPage.getAttributeValueJSON(userJSON,"phone"));
 
 	}

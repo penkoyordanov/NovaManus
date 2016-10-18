@@ -37,7 +37,7 @@ public class NewAdPage extends Base {
 	private By categoryDropdown=By.cssSelector("[ngcontrol='category']");
 
 	private By conditionDropdown=By.cssSelector("[ngcontrol='condition']");
-	private By defaultAddress=By.xpath("//input[@ngcontrol='address']/following::ul/li[contains(.,'Camí Pui')]");
+    private By defaultAddress = By.xpath("//input[@ngcontrol='address']/../ul/li");
 
 	private Faker faker;
 
@@ -45,7 +45,7 @@ public class NewAdPage extends Base {
 
 	public NewAdPage(EventFiringWebDriver eDriver) {
 		super(eDriver);
-		new WebDriverWait(eDriver,10).until(ExpectedConditions.presenceOfAllElementsLocatedBy(defaultAddress));
+        new WebDriverWait(eDriver, 10).until(ExpectedConditions.presenceOfElementLocated(defaultAddress));
 //		isDisplayed(defaultAddress,10);
 		faker=new Faker();
 	}

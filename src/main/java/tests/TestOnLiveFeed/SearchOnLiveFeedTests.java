@@ -1,9 +1,9 @@
 package tests.TestOnLiveFeed;
 
+import listeners.Utility;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import tests.BaseTest;
 
 import static org.testng.Assert.*;
@@ -11,15 +11,25 @@ import static org.testng.Assert.*;
 /**
  * Created by penko.yordanov on 10-Aug-16.
  */
+@Listeners(listeners.TestListener.class)
 public class SearchOnLiveFeedTests extends BaseTest {
-    private String userName = "lscott1k@ftc.gov";
-    private String password = "$aLamura234";
 
     @BeforeClass
     public void setUp() {
         super.setUpBrowser();
-        feed = super.signIn(userName,password);
+        String password = "$aLamura234";
+        String userName = "lscott1k@ftc.gov";
+        feed = super.signIn(userName, password);
         feed.clickSearchOptionsBtn();
+    }
+
+    @AfterClass
+    public void tearDown(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            Utility.captureScreenshot(eDriver, result.getName());
+
+        }
+        shutDown();
     }
 
     @Test(dataProvider = "SearchCriteria")

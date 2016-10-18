@@ -179,7 +179,7 @@ public class FeedPage extends Base {
 		boolean isAllCategoriesSame=true;
         List<WebElement> categories = findElements(By.xpath("//ad-tile/article/div/h4/span"));
         for (WebElement category : categories) {
-            if(!category.getText().toLowerCase().equals(expectedCategory.toLowerCase())){
+            if (!category.getText().trim().toLowerCase().equals(expectedCategory.toLowerCase())) {
                 isAllCategoriesSame=false;
             }
 

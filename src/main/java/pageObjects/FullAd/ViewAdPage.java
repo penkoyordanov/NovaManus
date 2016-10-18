@@ -15,7 +15,7 @@ public class ViewAdPage extends Base {
 
 	private By adTitle=By.xpath("//article[@class='view-add-detail']/h1");
 
-	private By adDescription =By.xpath("//div[@class='va-description']/trimmable/p");
+	private By adDescription = By.xpath("//div[@class='va-description']/trimmable//p");
 
 
 
@@ -132,7 +132,7 @@ public class ViewAdPage extends Base {
 	}
 
 	public Boolean isImageAttachedToAdvertise(String imageSource){
-		return isDisplayed(By.xpath("//article[@class='view-add-images']/descendant::img[contains(@src,'"+imageSource+"')][@alt='Add Main Image']"),10);
+		return isDisplayed(By.xpath("//article[@class='view-add-images']//adv-image//img[contains(@src,'" + imageSource + "')]"), 10);
 	}
 
 }

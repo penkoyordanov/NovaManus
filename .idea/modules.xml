@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NovaManus.iml" filepath="$PROJECT_DIR$/NovaManus.iml" />
+      <module fileurl="file://$USER_HOME$/IdeaProjects/RestAssuredNM/NovaManus_API_Tests.iml" filepath="$USER_HOME$/IdeaProjects/RestAssuredNM/NovaManus_API_Tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NovaManus_Selenium_Tests.iml" filepath="$PROJECT_DIR$/NovaManus_Selenium_Tests.iml" />
     </modules>
   </component>
 </project>

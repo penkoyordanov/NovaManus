@@ -13,9 +13,10 @@ import pageObjects.Feed.FeedPage;
  */
 public class SignUpStep2Page extends Base {
     private By goBtn=By.xpath("//a[text()='Go and axplore!']");
-    private By addBtn=By.xpath("//span[text()='Add']");
+
     SignUpStep2Page(EventFiringWebDriver eDriver){
         super(eDriver);
+        By addBtn = By.xpath("//span[text()='Add']");
         isDisplayed(addBtn,10);
     }
 

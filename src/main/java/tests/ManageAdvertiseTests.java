@@ -3,30 +3,33 @@ package tests;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertNotEquals;
 
+import listeners.Utility;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.NewAdPage;
 import pageObjects.Profile.ProfilePage;
 import pageObjects.FullAd.ViewAdPage;
 
+@Listeners(listeners.TestListener.class)
 public class ManageAdvertiseTests extends BaseTest{
 	private String adTitle = null;
-	private String userName = "lscott1k@ftc.gov";
-	private String password = "$aLamura234";
-	private ProfilePage profile=null;
-	private ViewAdPage ad;
+    private ProfilePage profile = null;
+    private ViewAdPage ad;
 	private NewAdPage makeAd =null;
 
 	@BeforeMethod
 	public void SetUp()  {
 		super.setUpBrowser();
-		feed = super.signIn(userName,password);
-	}
+        String password = "$aLamura234";
+        String userName = "lscott1k@ftc.gov";
+        feed = super.signIn(userName, password);
+    }
 
-	@Test
-	public void MarkAdvertiseAsSold(){
+    @Test(description = "Mark live ad as Sold ")
+    public void MarkAdvertiseAsSold(){
 		profile = feed.clickProfileImage();
 
 		// Store title of last advertise in title field
@@ -46,8 +49,8 @@ public class ManageAdvertiseTests extends BaseTest{
 
 	}
 
-	@Test
-	public void RemoveLiveAd() {
+    @Test(description = "Remove ad from Live ads list ")
+    public void RemoveLiveAd() {
 		profile = feed.clickProfileImage();
 		adTitle = profile.getTitleLastAdvertise();
 		
@@ -66,8 +69,8 @@ public class ManageAdvertiseTests extends BaseTest{
 		assertTrue(profile.assertRemovedAdisInOldAdsList(adTitle), "Deleted advertisement is not in previous ads");
 	}
 
-	@Test
-	public void DeleteDraftAd() {
+    @Test(description = "Delete ad from Draft list ")
+    public void DeleteDraftAd() {
 		profile = feed.clickProfileImage();
 		profile = profile.selectFromAdsMenu("Drafts");
 		adTitle = profile.getTitleLastAdvertise();
@@ -78,9 +81,9 @@ public class ManageAdvertiseTests extends BaseTest{
 
 	}
 
-	@Test
-	public void DeletePreviousAd() {
-		profile = feed.clickProfileImage();
+    @Test(description = "Delete ad from History list ")
+    public void DeleteAdFromHistory() {
+        profile = feed.clickProfileImage();
 		profile = profile.selectFromAdsMenu("History");
 		adTitle = profile.getTitleLastAdvertise();
 		profile.clickdeleteForTopAdvertise();
@@ -91,7 +94,10 @@ public class ManageAdvertiseTests extends BaseTest{
 
 	@AfterMethod
 	public void tearDown(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            Utility.captureScreenshot(eDriver, result.getName());
 
-		super.shutDown();
+        }
+        super.shutDown();
 	}
 }

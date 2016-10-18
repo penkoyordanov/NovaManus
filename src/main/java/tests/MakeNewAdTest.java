@@ -1,7 +1,10 @@
 package tests;
 
 import helpers.TestDataFaker;
+import listeners.Utility;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import helpers.GetRandomFile;
@@ -13,9 +16,8 @@ import java.util.Map;
 
 import static org.testng.Assert.*;
 
+@Listeners(listeners.TestListener.class)
 public class MakeNewAdTest extends BaseTest {
-	private String userName = "lscott1k@ftc.gov";
-	private String password = "$aLamura234";
     private String fullName = "Lori Scott";
 
 	private String title=null;
@@ -23,7 +25,6 @@ public class MakeNewAdTest extends BaseTest {
 	private String category=null;
 	private String condition=null;
 	private String price=null;
-	private String keywords="turpis,sed ante,vivamus,tortor";
 	private String imageUrl=null;
 
 	private ProfilePage profile=null;
@@ -43,8 +44,10 @@ public class MakeNewAdTest extends BaseTest {
 
 		// Navigate to Sign In page of NovaManus and sign in with username and
 		// password
-		feed = super.signIn(userName,password);
-	}
+        String password = "$aLamura234";
+        String userName = "lscott1k@ftc.gov";
+        feed = super.signIn(userName, password);
+    }
 
 	/*@Test
 	public void publishAdMakeAnOffer() throws InterruptedException {
@@ -77,8 +80,8 @@ public class MakeNewAdTest extends BaseTest {
 	}*/
 
 	// Next method is to test that user can publish advertisement
-	@Test
-	public void publishNewAd(){
+    @Test(description = "Publish new advertisement. New advertisemetn should appear on the feed and on profile as live ad")
+    public void publishNewAd(){
 
 
 
@@ -90,7 +93,8 @@ public class MakeNewAdTest extends BaseTest {
 		makeAd =makeAd.typeTitle(title);
 		makeAd =makeAd.typeDescription(description);
 		makeAd.uploadPhoto(GetRandomFile.getRandomFileToUpload());
-		makeAd =makeAd.typeKeywords(keywords);
+        String keywords = "turpis,sed ante,vivamus,tortor";
+        makeAd =makeAd.typeKeywords(keywords);
 		makeAd =makeAd.clickAddKeywordBtn();
 
 		// Assert that keyword is added to the advertisement
@@ -118,8 +122,8 @@ public class MakeNewAdTest extends BaseTest {
 	}
 
 	// Next method is to test that user can save advertisement as Draft
-	@Test
-	public void saveAdDraft() throws InterruptedException {
+    @Test(description = "Save advertisement as draft. New advertisemetn should appear in the Draft list under profile. Should not be available on Feed", alwaysRun = true)
+    public void saveAdDraft() throws InterruptedException {
 		makeAd = feed.clickMakeNewAdButton();
 		
 		makeAd = makeAd.selectCategory(category);
@@ -147,8 +151,12 @@ public class MakeNewAdTest extends BaseTest {
 		assertTrue(profile.isCategoryDisplayed(category, currencyDefault, price), "Category is not displayed" + profile.getPriceOfLastAdvertise());
 	}
 
-	@AfterMethod
-	public void tearDown() {
+    @AfterMethod(alwaysRun = true)
+    public void tearDown(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            Utility.captureScreenshot(eDriver, result.getName());
+
+        }
 
 		shutDown();
 	}

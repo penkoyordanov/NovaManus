@@ -17,14 +17,12 @@ import pageObjects.Signup.SignUpStep2Page;
 import java.util.Map;
 
 public class RegularSignUpTest {
-	private String password = "$aLamura234";
-	// private String language = null;
-	SignUpPage sup;
+    // private String language = null;
+    SignUpPage sup;
 //	GetTestData testData;
 
-	private LoginPage loginPage;
-	WebDriver driver;
-	WebDriverWait wait;
+    WebDriver driver;
+    WebDriverWait wait;
 	private EventFiringWebDriver eDriver;
 
 	/*@BeforeTest
@@ -36,11 +34,11 @@ public class RegularSignUpTest {
 	public void setUp () throws InterruptedException {
 		Browser.initChrome();
 		this.eDriver = Browser.driver();
-		loginPage = new LoginPage(eDriver);
-	}
+        LoginPage loginPage = new LoginPage(eDriver);
+    }
 
-	@Test
-	public void signUPStep1() throws InterruptedException {
+    @Test(enabled = false)
+    public void signUPStep1() throws InterruptedException {
 		final Map<String, String> registerFormValues= TestDataFaker.getReistrationFormValues();
 		FrontPage frontPage=new FrontPage(eDriver);
 
@@ -53,8 +51,9 @@ public class RegularSignUpTest {
 		sup=sup.setEmail_field(registerFormValues.get("email"));
 		sup=sup.setAddress_field(registerFormValues.get("address"));
 
-		sup=sup.setPassword_field(password);
-		sup=sup.setConfirmPassword_field(password);
+        String password = "$aLamura234";
+        sup = sup.setPassword_field(password);
+        sup=sup.setConfirmPassword_field(password);
 		sup=sup.acceptTermsAndConditions();
 		sup=sup.clickNextBtn();
 		Thread.sleep(5000);

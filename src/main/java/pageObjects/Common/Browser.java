@@ -14,6 +14,8 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
+import java.io.File;
+
 import static java.util.logging.Level.INFO;
 
 public class Browser {
@@ -22,6 +24,7 @@ public class Browser {
 
 	private static EventFiringWebDriver edriver;
 	private static EventHandler oc;
+    private static String folderPath = System.getenv("DRIVERS");
 
 	public static EventFiringWebDriver driver() {
 		return edriver;
@@ -29,9 +32,10 @@ public class Browser {
 
 	public static void initChrome() {
 		ChromeOptions options=new ChromeOptions();
+
 		options.addArguments("chrome.switches","--disable-extensions");
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-		wDriver = new ChromeDriver(options);
+        System.setProperty("webdriver.chrome.driver", folderPath + File.separator + "chromedriver.exe");
+        wDriver = new ChromeDriver(options);
 		edriver = new EventFiringWebDriver(wDriver);
 		oc=new EventHandler();
 		edriver.register(oc);
@@ -40,8 +44,8 @@ public class Browser {
 	}
 
 	public static void initFF(){
-		System.setProperty("webdriver.gecko.driver", "D:\\webdriver\\drivers\\geckodriver.exe");
-		wDriver = new FirefoxDriver();
+        System.setProperty("webdriver.gecko.driver", folderPath + File.separator + "geckodriver.exe");
+        wDriver = new FirefoxDriver();
 		edriver = new EventFiringWebDriver(wDriver);
 		oc=new EventHandler();
 		edriver.register(oc);
@@ -49,7 +53,7 @@ public class Browser {
 		edriver	.manage().window().maximize();
 	}
 	public static void initEdge(){
-		System.setProperty("webdriver.edge.driver", "C:/Program Files (x86)/Microsoft Web Driver/MicrosoftWebDriver.exe");
+        System.setProperty("webdriver.edge.driver", folderPath + File.separator + "MicrosoftWebDriver.exe");
         EdgeOptions options=new EdgeOptions();
         options.setPageLoadStrategy("eager");
 		wDriver = new EdgeDriver();
