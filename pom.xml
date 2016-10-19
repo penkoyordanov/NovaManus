@@ -41,7 +41,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
+		  <version>3.5.1</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
@@ -50,7 +50,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.18.1</version>
+		  <version>2.19.1</version>
         <configuration>
           <forkCount>0</forkCount>
           <suiteXmlFiles>
@@ -130,6 +130,7 @@ directory}/screenshots</screenshotDirectory>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>RELEASE</version>
+			<!--<scope>test</scope>-->
 		</dependency>
 		<!--	<dependency>
                 <groupId>com.github.detro</groupId>
