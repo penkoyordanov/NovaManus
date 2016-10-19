@@ -101,7 +101,7 @@ directory}/screenshots</screenshotDirectory>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
+			<!--<scope>test</scope>-->
 		</dependency>
 		<dependency>
 			<groupId>com.github.javafaker</groupId>
@@ -153,11 +153,11 @@ directory}/screenshots</screenshotDirectory>
 			<artifactId>webdrivermanager</artifactId>
 			<version>1.4.6</version>
 		</dependency>
-        <dependency>
+		<!--<dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-        </dependency>
+        </dependency>-->
 		<!-- https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured -->
 		<dependency>
 			<groupId>com.jayway.restassured</groupId>
