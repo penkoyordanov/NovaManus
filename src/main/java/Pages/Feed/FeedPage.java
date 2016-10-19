@@ -26,7 +26,7 @@ public class FeedPage extends Base {
 
     private By searchOptionsBtn = By.xpath("//button[@title='Search options']");
 
-    private By searchBtn = By.xpath("//span[text()=\"Search\"]");
+    private By searchBtn = By.xpath("//*[@class='fa fa-search']");
 
 
     public FeedPage(EventFiringWebDriver edriver) {

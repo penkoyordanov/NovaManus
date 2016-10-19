@@ -108,19 +108,11 @@ directory}/screenshots</screenshotDirectory>
 			<artifactId>javafaker</artifactId>
 			<version>LATEST</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
-		<!--	<dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-chrome-eDriver</artifactId>
-                <version>3.0.0</version>
-            </dependency>-->
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-api</artifactId>
@@ -132,45 +124,26 @@ directory}/screenshots</screenshotDirectory>
 			<version>RELEASE</version>
 			<!--<scope>test</scope>-->
 		</dependency>
-		<!--	<dependency>
-                <groupId>com.github.detro</groupId>
-                <artifactId>phantomjsdriver</artifactId>
-                <version>1.2.0</version>
-            </dependency>-->
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20160810</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.json/org.json -->
-		<!--<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>org.json</artifactId>
-			<version>chargebee-1.0</version>
-		</dependency>-->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>1.4.6</version>
 		</dependency>
-		<!--<dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>-->
-		<!-- https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured -->
 		<dependency>
 			<groupId>com.jayway.restassured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-
-		<!-- <dependency>
+		<dependency>
              <groupId>com.microsoft.sqlserver</groupId>
              <artifactId>sqljdbc4</artifactId>
              <version>4.0</version>
              <scope>runtime</scope>
-         </dependency>-->
+		</dependency>
 	</dependencies>
 </project>

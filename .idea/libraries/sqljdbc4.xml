@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="sqljdbc4">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../MSSQL_driver/sqljdbc_4.2/enu/sqljdbc4.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
