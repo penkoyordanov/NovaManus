@@ -24,7 +24,6 @@
         <processorPath useClasspath="true" />
         <module name="NM" />
         <module name="NovaManus" />
-        <module name="NovaManus_API_Tests" />
         <module name="NovaManus_Selenium_Tests" />
       </profile>
     </annotationProcessing>
