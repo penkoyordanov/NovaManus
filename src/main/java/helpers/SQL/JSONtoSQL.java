@@ -7,6 +7,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 /**
  * Created by penko.yordanov on 27-Oct-16.
@@ -17,10 +18,11 @@ public class JSONtoSQL {
 
     private static JSONObject parseJsonFromFile(){
         JSONObject jsonObject;
+        String sqlFolder=System.getenv("NM_SQLs");
         Object obj = null;
         try {
 
-            obj = parser.parse(new FileReader("D:\\webdriver\\SQL.json"));
+            obj = parser.parse(new FileReader(sqlFolder+File.separator+"SQL.json"));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
