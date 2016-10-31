@@ -1,10 +1,10 @@
-package tests.TestOnLiveFeed;
+package TestOnLiveFeed;
 
+import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import Pages.Common.Browser;
+import Pages.Browser.Browser;
 import Pages.Feed.FilterContainer;
-import tests.BaseTest;
 
 /**
  * Tests to verify filter feed by categories

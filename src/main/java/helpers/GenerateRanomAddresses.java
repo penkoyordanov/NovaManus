@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import Pages.Common.Browser;
+import Pages.Browser.Browser;
 
 import java.nio.charset.Charset;
 

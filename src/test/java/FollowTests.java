@@ -1,12 +1,12 @@
-package tests;
 
+import Pages.Profile.FollowSettingsPage;
+import base.BaseTest;
 import listeners.Utility;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import Pages.Profile.FollowPage;
 import Pages.Profile.ProfilePage;
 
 import static org.testng.Assert.assertEquals;
@@ -14,14 +14,14 @@ import static org.testng.Assert.assertTrue;
 
 
 @Listeners(listeners.TestListener.class)
-public class FollowTests extends BaseTest{
+public class FollowTests extends BaseTest {
     private String areaToFollow="Sant Julià de Lòria";
 //    private String userToFollow = "Gregory, Wagner";
 
     @BeforeMethod
     public void setUp() {
         super.setUpBrowser();
-        String userName = "millie.murphy@yahoo.com";
+        String userName = "test@novamanus.com";
         String password = "$aLamura234";
         feed = super.signIn(userName, password);
 
@@ -39,7 +39,7 @@ public class FollowTests extends BaseTest{
     @Test(description = "Searh and follow area (City,Town) ")
     public void FollowAreaTest(){
         ProfilePage profile=feed.clickProfileImage();
-        FollowPage follow=profile.selectFollowFromProfileMenu();
+        FollowSettingsPage follow=profile.selectFollowFromProfileMenu();
         if(follow.assertIsFollowed(areaToFollow)){
             follow.unfollow(areaToFollow);
         }
@@ -53,7 +53,7 @@ public class FollowTests extends BaseTest{
     @Test(enabled = false)
     public void FollowUser(){
         ProfilePage profile=feed.clickProfileImage();
-        FollowPage follow=profile.selectFollowFromProfileMenu();
+        FollowSettingsPage follow=profile.selectFollowFromProfileMenu();
         if(follow.assertIsFollowed(areaToFollow)){
             follow.unfollow(areaToFollow);
         }
@@ -67,7 +67,7 @@ public class FollowTests extends BaseTest{
     @Test(description = "Searh and follow another user ")
     public void FollowKeyword() {
         ProfilePage profile = feed.clickProfileImage();
-        FollowPage follow = profile.selectFollowFromProfileMenu();
+        FollowSettingsPage follow = profile.selectFollowFromProfileMenu();
         String keywordToFollow = "iPhone 6s";
         if (follow.assertIsFollowed(keywordToFollow)) {
             follow.unfollow(keywordToFollow);

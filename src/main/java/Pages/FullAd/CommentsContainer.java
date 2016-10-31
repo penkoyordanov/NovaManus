@@ -4,7 +4,9 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.testng.Assert;
+
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class CommentsContainer extends ViewAdPage {
     private static Faker faker;
@@ -45,8 +47,8 @@ public class CommentsContainer extends ViewAdPage {
     }
 
     public void assertCommentIsPosted(String comment){
-        Assert.assertTrue(isDisplayed(By.xpath("//ad-comment/div/div/p[text()='"+comment+"']"),10));
-        Assert.assertTrue(isDisplayed(By.xpath("//ad-comment/div/div/p[text()='"+comment+"']/../child::div/a/strong[text()='Lori Scott']"),10));
+        assertTrue(isDisplayed(By.xpath("//ad-comment/div/div/p[text()='"+comment+"']"),10),"Comment is not posted");
+        assertTrue(isDisplayed(By.xpath("//ad-comment/div/div/p[text()='"+comment+"']/../child::div/a/strong[text()='Lori Scott']"),10),"Comment publisher not displayed");
     }
 
     public void assertCommentIsDeleted(String comment){
@@ -55,6 +57,6 @@ public class CommentsContainer extends ViewAdPage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Assert.assertFalse(isDisplayed(By.xpath("//ad-comment/div/div/p[text()='"+comment+"']"),2),"Comment is not deleted");
+        assertFalse(isDisplayed(By.xpath("//ad-comment/div/div/p[text()='"+comment+"']"),2),"Comment is not deleted");
     }
 }

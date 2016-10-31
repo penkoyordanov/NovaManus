@@ -1,18 +1,18 @@
-package tests;
-
+import Pages.Browser.Browser;
+import Pages.Feed.FeedPage;
+import Pages.FrontPage;
+import Pages.LoginPage;
+import Pages.Profile.ProfilePage;
+import Pages.Signup.SignUpPage;
+import Pages.Signup.SignUpStep2Page;
 import helpers.TestDataFaker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
-
-import Pages.*;
-import Pages.Common.Browser;
-import Pages.Feed.FeedPage;
-import Pages.Profile.ProfilePage;
-import Pages.Signup.SignUpPage;
-import Pages.Signup.SignUpStep2Page;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.Map;
 
@@ -66,7 +66,7 @@ public class RegularSignUpTest {
 		FeedPage feed = step2.clickLetsGoBtn();
 		ProfilePage profile = feed.clickProfileImage();
 		profile.assertProfileNames(registerFormValues.get("firstName"),registerFormValues.get("lastName"));
-		/*FollowPage follow=profile.selectFollowFromProfileMenu();
+		/*FollowSettingsPage follow=profile.selectFollowFromProfileMenu();
 		follow.assertIsFollowed("Sofia");
 		follow.assertIsFollowed("Pernik");
 		follow.assertIsFollowed("Gregory");*/

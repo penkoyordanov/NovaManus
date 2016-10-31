@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NovaManus.iml" filepath="$PROJECT_DIR$/NovaManus.iml" />
-      <module fileurl="file://$PROJECT_DIR$/NovaManus_Selenium_Tests.iml" filepath="$PROJECT_DIR$/NovaManus_Selenium_Tests.iml" />
     </modules>
   </component>
 </project>

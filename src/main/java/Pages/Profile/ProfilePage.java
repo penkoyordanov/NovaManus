@@ -126,7 +126,7 @@ public class ProfilePage extends Base {
 		return this;
 	}
 
-	public FollowPage selectFollowFromProfileMenu() {
+	public FollowSettingsPage selectFollowFromProfileMenu() {
 		isDisplayed(By.xpath("//div[@class='dropdown my-profile-menu active']/button/span[@class='fa fa-angle-down']"),10);
 		click(By.xpath("//div[@class='dropdown my-profile-menu active']"));
 		isDisplayed(By.xpath("//div[@class='dropdown my-profile-menu active open']"),10);
@@ -137,7 +137,7 @@ public class ProfilePage extends Base {
 				option.click();
 			break;
 		}
-		return new FollowPage(eDriver);
+		return new FollowSettingsPage(eDriver);
 	}
 
 	public ViewAdPage clickAdImage(String title) {
@@ -182,7 +182,7 @@ public class ProfilePage extends Base {
 		assertTrue(isDisplayed(By.xpath("//div[@class='mp-name']/h1[contains(.,'"+firstName+"')]/span[contains(.,'"+lastName+"')]"),10),"Profile names are not displayed");
 	}
 
-	/*public FollowPage selectFollowFromProfileMenu(){
+	/*public FollowSettingsPage selectFollowFromProfileMenu(){
 
 	}*/
 	

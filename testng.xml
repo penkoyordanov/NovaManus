@@ -6,31 +6,31 @@
   </listeners>
   <test name="CRUD advertisement">
     <classes>
-      <class name="tests.MakeNewAdTest"/>
-       <class name="tests.ManageAdvertiseTests"/>
-      <class name="tests.TestOnFullAd.AdDetailsTest"/>
+      <class name="MakeNewAdTest"/>
+       <class name="ManageAdvertiseTests"/>
+      <class name="TestOnFullAd.AdDetailsTest"/>
     </classes>
   </test>
   <test name="CRD Comments on advertisement">
     <classes>
-      <class name="tests.TestOnFullAd.CRD_Comments"/>
+      <class name="TestOnFullAd.CRD_Comments"/>
     </classes>
   </test>
   <test name="CRUD user">
     <classes>
-      <class name="tests.RegularSignUpTest"/>
+      <class name="RegularSignUpTest"/>
     </classes>
   </test>
   <test name="Follow">
     <classes>
-      <class name="tests.FollowTests"/>
+      <class name="FollowTests"/>
     </classes>
   </test>
   <test name="Feed">
     <classes>
-      <class name="tests.StartNewChat"/>
-      <class name="tests.TestOnLiveFeed.FeedFilterByCategory"/>
-      <class name="tests.TestOnLiveFeed.SearchOnFeedTests"/>
+      <class name="StartNewChat"/>
+      <class name="TestOnLiveFeed.FeedFilterByCategory"/>
+      <class name="TestOnLiveFeed.SearchOnFeedTests"/>
     </classes>
   </test>
 </suite> <!-- Suite -->

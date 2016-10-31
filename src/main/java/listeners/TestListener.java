@@ -1,9 +1,8 @@
 package listeners;
 
-import Pages.Common.Browser;
+import Pages.Browser.Browser;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;

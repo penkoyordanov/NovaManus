@@ -1,22 +1,20 @@
-package tests;
 
+import Pages.Feed.ChatBar;
+import base.BaseTest;
 import helpers.TestDataFaker;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
-import Pages.Feed.ChatBar;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  * Test case to test chat
  */
-public class StartNewChat extends BaseTest{
+public class StartNewChat extends BaseTest {
     private final String message=TestDataFaker.getChatMessage();
     EventFiringWebDriver eDriver;
 
-  /*  @BeforeClass
-    public static void clearChat(){
-        ClearChatSQL.clearChat();
-    }*/
   @AfterMethod
   public void tearDown(ITestResult result) {
 
@@ -30,7 +28,7 @@ public class StartNewChat extends BaseTest{
         // Navigate to Sign In page of NovaManus and sign in with username and
         // password
         String password = "$aLamura234";
-        String userName = "mgarrett10@ca.gov";
+        String userName = "lscott1k@ftc.gov";
         feed = super.signIn(userName, password);
     }
 
@@ -53,7 +51,7 @@ public class StartNewChat extends BaseTest{
         loginPage=feed.loggout();
         feed=signIn("test@novamanus.com","123456");
         chat=feed.openChat();
-        String chateInitiatorName = "Martha";
+        String chateInitiatorName = "Lori";
         chat.assertLastMessageIsInConversationOverview(chateInitiatorName,message);
 
     }

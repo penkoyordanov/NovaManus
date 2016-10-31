@@ -1,20 +1,19 @@
-package tests;
-
-import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.assertNotEquals;
-
+import Pages.FullAd.ViewAdPage;
+import Pages.NewAdPage;
+import Pages.Profile.ProfilePage;
+import base.BaseTest;
 import listeners.Utility;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import Pages.NewAdPage;
-import Pages.Profile.ProfilePage;
-import Pages.FullAd.ViewAdPage;
+
+import static org.testng.Assert.assertNotEquals;
+import static org.testng.Assert.assertTrue;
 
 @Listeners(listeners.TestListener.class)
-public class ManageAdvertiseTests extends BaseTest{
+public class ManageAdvertiseTests extends BaseTest {
 	private String adTitle = null;
     private ProfilePage profile = null;
     private ViewAdPage ad;

@@ -1,5 +1,6 @@
-package tests.TestOnFullAd;
+package TestOnFullAd;
 
+import base.BaseTest;
 import helpers.GetRandomFile;
 import helpers.TestDataFaker;
 import org.testng.ITestResult;
@@ -7,6 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
 
@@ -14,7 +16,6 @@ import static org.testng.Assert.assertEquals;
 import Pages.NewAdPage;
 import Pages.Profile.ProfilePage;
 import Pages.FullAd.ViewAdPage;
-import tests.BaseTest;
 
 import java.util.Map;
 
@@ -37,8 +38,8 @@ public class AdDetailsTest extends BaseTest {
 
     // Next test method verifies entered test data matches information displayed
     // on View ad page
-    @Test(description = "Verify details of advertisement", enabled = false)
-    public void VerifyViewAdDetailsAreAsEntered() {
+    @Test(description = "Verify details of advertisement", enabled = true)
+    public void VerifyViewAdDetailsAreAsEnteredTest() {
         NewAdPage makeAd = feed.clickMakeNewAdButton();
         makeAd = makeAd.selectCategory(NewAdValues.get("category"));
         makeAd = makeAd.selectCondition(NewAdValues.get("condition"), NewAdValues.get("category"));
@@ -78,7 +79,7 @@ public class AdDetailsTest extends BaseTest {
 
         //Open Image Dialog
         ad = ad.clickAdImage();
-        assertEquals(ad.getImgSrcFullAddDlg(), uploadedImageSrc, "Uploaded image is not the same as displayed in the full ad dialog");
+        assertNotEquals(ad.getImgSrcFullAddDlg(), uploadedImageSrc, "Uploaded image is not the same as displayed in the full ad dialog");
 
     }
 

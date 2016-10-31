@@ -8,15 +8,15 @@ import Pages.Common.Base;
 import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
-public class FollowPage extends Base {
+public class FollowSettingsPage extends Base {
     private By searchField = By.xpath("//input[@placeholder='Search cities, users and keywords to follow..']");
 
-    FollowPage(EventFiringWebDriver eDriver) {
+    FollowSettingsPage(EventFiringWebDriver eDriver) {
         super(eDriver);
         assertTrue(isDisplayed(By.xpath("//div[@class='follow-search']/div"),10),"Follow page is not loaded");
     }
 
-    public FollowPage searchToFollow(String searchCriteria){
+    public FollowSettingsPage searchToFollow(String searchCriteria){
         type(searchCriteria,searchField);
         return this;
     }
@@ -25,13 +25,13 @@ public class FollowPage extends Base {
         assertTrue(isDisplayed(By.xpath("//suggestion-item/li/strong[contains(.,'"+searchCriteria+"')]"),10),""+searchCriteria+" didn't appear as suggestion");
     }
 
-    public FollowPage unfollow(String areaName) {
+    public FollowSettingsPage unfollow(String areaName) {
         click(By.xpath("//followed-item/descendant::strong[starts-with(.,'" + areaName + "')]/../../span"));
         assertItemIsUnfollowed(areaName);
         return this;
     }
 
-    public FollowPage followFromSuggestion(String follow){
+    public FollowSettingsPage followFromSuggestion(String follow){
         click(By.xpath("//suggestion-item/li/strong[contains(.,'" + follow + "')]/..//button"));
         return this;
     }

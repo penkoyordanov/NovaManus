@@ -1,16 +1,15 @@
-package tests;
-
+import Pages.FullAd.ViewAdPage;
+import Pages.NewAdPage;
+import Pages.Profile.ProfilePage;
+import base.BaseTest;
+import helpers.GetRandomFile;
 import helpers.TestDataFaker;
 import listeners.Utility;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
-import helpers.GetRandomFile;
-import Pages.NewAdPage;
-import Pages.Profile.ProfilePage;
-import Pages.FullAd.ViewAdPage;
 
 import java.util.Map;
 

@@ -1,10 +1,7 @@
-package tests.TestOnLiveFeed;
+package TestOnLiveFeed;
 
-import listeners.Utility;
-import org.testng.Assert;
-import org.testng.ITestResult;
+import base.BaseTest;
 import org.testng.annotations.*;
-import tests.BaseTest;
 
 import static org.testng.Assert.*;
 

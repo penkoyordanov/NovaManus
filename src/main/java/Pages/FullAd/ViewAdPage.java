@@ -42,13 +42,13 @@ public class ViewAdPage extends Base {
 	}
 
 	public ViewAdPage clickAdImage(){
-		click(By.xpath("//article[@class='view-add-images']/descendant::img[@alt='Add Main Image']"));
-		isDisplayed(By.xpath("//div[@id='fullAddDlg'][@class='modal fade in']"),10);
+		click(By.xpath("//article[@class='view-add-images']/descendant::img"));
+		isDisplayed(By.xpath("//div[@id='lightcase-case']"),10);
 		return this;
 	}
 
 	public String getImgSrcFullAddDlg(){
-		return find(By.xpath("//div[@id='fullAddDlg'][@class='modal fade in']/descendant::img[@alt='Full Add Image']")).getAttribute("src");
+		return find(By.xpath("//div[@class='lightcase-contentInner']/img")).getAttribute("src");
 	}
 	
 	public String getOwnerNames(){
@@ -86,7 +86,7 @@ public class ViewAdPage extends Base {
 			case "Sell":
 				if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[1]")).trim().equals(currency + " " + price)) {
 					isCategoryDisplayed = true;
-				}
+				}break;
 			case "Rent":
 				if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[1]")).trim().equals(currency + " " + price)) {
 					isCategoryDisplayed = true;
@@ -95,12 +95,12 @@ public class ViewAdPage extends Base {
 				if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[2]"))
 						.trim().equals("Free")) {
 					isCategoryDisplayed = true;
-				}
+				}break;
 			default:
 				if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[2]"))
 						.trim().equals(category)) {
 					isCategoryDisplayed = true;
-				}
+				}break;
 		}
 		/*if (category.equals("Sell") || category.equals("Rent")) {
 			if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[1]")).trim().equals(currency + " " + price)){

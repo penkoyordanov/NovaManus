@@ -8,7 +8,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import Pages.Common.Base;
-import Pages.Common.Browser;
+import Pages.Browser.Browser;
 
 public class SignUpPage extends Base {
 //	WebDriverWait wait;

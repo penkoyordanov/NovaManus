@@ -1,8 +1,8 @@
-package tests;
-
-import static org.junit.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
+import Pages.Browser.Browser;
+import Pages.Feed.FeedPage;
+import Pages.FrontPage;
+import Pages.LoginPage;
+import Pages.Profile.ProfilePage;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,11 +10,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import Pages.Common.Browser;
-import Pages.FrontPage;
-import Pages.Feed.FeedPage;
-import Pages.LoginPage;
-import Pages.Profile.ProfilePage;
+import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LoginTests {

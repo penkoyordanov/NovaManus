@@ -1,4 +1,4 @@
-package Pages.Common;
+package Pages.Browser;
 
 import listeners.EventHandler;
 import org.openqa.selenium.Dimension;
@@ -34,8 +34,8 @@ public class Browser {
 		oc=new EventHandler();
 		edriver.register(oc);
 		edriver.manage().deleteAllCookies();
-		edriver.manage().window().setSize(new Dimension(1200, 796));
-//		edriver.manage().window().maximize();
+//		edriver.manage().window().setSize(new Dimension(1200, 796));
+		edriver.manage().window().maximize();
 		System.out.println(edriver.manage().window().getSize());
 	}
 

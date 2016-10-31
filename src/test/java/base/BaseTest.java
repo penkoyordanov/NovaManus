@@ -1,7 +1,7 @@
-package tests;
+package base;
 
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import Pages.Common.Browser;
+import Pages.Browser.Browser;
 import Pages.FrontPage;
 import Pages.Feed.FeedPage;
 import Pages.LoginPage;
@@ -9,7 +9,7 @@ import Pages.LoginPage;
 public class BaseTest {
 
 
-	LoginPage loginPage;
+	public LoginPage loginPage;
 	public FeedPage feed;
 	public EventFiringWebDriver eDriver;
 
