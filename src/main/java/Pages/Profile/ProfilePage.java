@@ -182,10 +182,6 @@ public class ProfilePage extends Base {
 		assertTrue(isDisplayed(By.xpath("//div[@class='mp-name']/h1[contains(.,'"+firstName+"')]/span[contains(.,'"+lastName+"')]"),10),"Profile names are not displayed");
 	}
 
-	/*public FollowSettingsPage selectFollowFromProfileMenu(){
-
-	}*/
-	
 
 	public boolean isCategoryDisplayed(String category, String currency, String price) {
 		boolean isCategoryDisplayed = false;

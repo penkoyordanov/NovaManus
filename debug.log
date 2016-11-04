@@ -16,3 +16,7 @@
 [0629/181028:ERROR:exception_snapshot_win.cc(57)] thread ID 26680 not found in process
 [0629/181028:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::InitializeException failed
 [0629/181028:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess, ntstatus=-1073741558
+[1103/173023:ERROR:process_reader_win.cc(142)] SuspendThread: Access is denied. (0x5)
+[1103/173023:ERROR:exception_snapshot_win.cc(87)] thread ID 25140 not found in process
+[1103/173023:WARNING:crash_report_exception_handler.cc(56)] ProcessSnapshotWin::Initialize failed
+[1103/173023:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: An attempt was made to access an exiting process.  (0xc000010a)

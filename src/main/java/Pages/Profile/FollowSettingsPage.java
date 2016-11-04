@@ -1,17 +1,16 @@
 package Pages.Profile;
 
-import helpers.SQL.GetFollowStatisics;
+import Pages.Common.Base;
+import helpers.SQL.GetDataFromDB;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import Pages.Common.Base;
 
-import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 public class FollowSettingsPage extends Base {
     private By searchField = By.xpath("//input[@placeholder='Search cities, users and keywords to follow..']");
 
-    FollowSettingsPage(EventFiringWebDriver eDriver) {
+    public FollowSettingsPage(EventFiringWebDriver eDriver) {
         super(eDriver);
         assertTrue(isDisplayed(By.xpath("//div[@class='follow-search']/div"),10),"Follow page is not loaded");
     }
@@ -54,18 +53,18 @@ public class FollowSettingsPage extends Base {
         switch (followedItem) {
             case "area":
                 if (statisticName.equals("ads")) {
-                    statisticsCount = GetFollowStatisics.getAdsInArea(FollowedItemValue);
+                    statisticsCount = GetDataFromDB.getAdsInArea(FollowedItemValue);
                     break;
                 } else {
-                    statisticsCount = GetFollowStatisics.getFollowersInArea(FollowedItemValue);
+                    statisticsCount = GetDataFromDB.getFollowersInArea(FollowedItemValue);
                     break;
                 }
             case "keyword":
                 if (statisticName.equals("ads")) {
-                    statisticsCount = GetFollowStatisics.getAdsWithKeyword(FollowedItemValue);
+                    statisticsCount = GetDataFromDB.getAdsWithKeyword(FollowedItemValue);
                     break;
                 } else {
-                    statisticsCount = GetFollowStatisics.getFollowersByKeyword(FollowedItemValue);
+                    statisticsCount = GetDataFromDB.getFollowersByKeyword(FollowedItemValue);
                     break;
                 }
         }
@@ -73,11 +72,17 @@ public class FollowSettingsPage extends Base {
     }
 
     public boolean assertIsFollowed(String follow){
-        return isDisplayed(By.xpath("//followed-item/descendant::strong[starts-with(.,'"+follow+"')]"),1);
+        return isDisplayed(By.xpath("//div[@class='follow-body keywords']//strong[text()='"+follow+"']"),10);
     }
 
     private Boolean assertItemIsUnfollowed(String itemToCheck) {
-        return isDisplayed(By.xpath("//followed-item/descendant::strong[starts-with(.,'" + itemToCheck + "')]"), 2);
+        boolean isDisplayed=false;
+        try {
+            isDisplayed=isDisplayed(By.xpath("//followed-item/descendant::strong[starts-with(.,'" + itemToCheck + "')]"), 5);
+        }catch (org.openqa.selenium.StaleElementReferenceException sere){
+
+        }
+        return isDisplayed;
     }
 
 }

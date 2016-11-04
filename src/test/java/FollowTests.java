@@ -1,4 +1,5 @@
 
+import Pages.Common.TopMenu;
 import Pages.Profile.FollowSettingsPage;
 import base.BaseTest;
 import listeners.Utility;
@@ -22,7 +23,7 @@ public class FollowTests extends BaseTest {
     public void setUp() {
         super.setUpBrowser();
         String userName = "test@novamanus.com";
-        String password = "$aLamura234";
+        String password = "123456";
         feed = super.signIn(userName, password);
 
     }
@@ -38,8 +39,8 @@ public class FollowTests extends BaseTest {
 
     @Test(description = "Searh and follow area (City,Town) ")
     public void FollowAreaTest(){
-        ProfilePage profile=feed.clickProfileImage();
-        FollowSettingsPage follow=profile.selectFollowFromProfileMenu();
+        TopMenu topMenu=new TopMenu();
+        FollowSettingsPage follow= topMenu.selectFollowSettings();
         if(follow.assertIsFollowed(areaToFollow)){
             follow.unfollow(areaToFollow);
         }
@@ -52,8 +53,8 @@ public class FollowTests extends BaseTest {
 
     @Test(enabled = false)
     public void FollowUser(){
-        ProfilePage profile=feed.clickProfileImage();
-        FollowSettingsPage follow=profile.selectFollowFromProfileMenu();
+        TopMenu topMenu=new TopMenu();
+        FollowSettingsPage follow= topMenu.selectFollowSettings();
         if(follow.assertIsFollowed(areaToFollow)){
             follow.unfollow(areaToFollow);
         }
@@ -64,10 +65,10 @@ public class FollowTests extends BaseTest {
         assertTrue(follow.assertIsFollowed(areaToFollow),"Area is not in the Area list");
     }
 
-    @Test(description = "Searh and follow another user ")
+    @Test(invocationCount = 3,description = "Searh and follow another user ")
     public void FollowKeyword() {
-        ProfilePage profile = feed.clickProfileImage();
-        FollowSettingsPage follow = profile.selectFollowFromProfileMenu();
+        TopMenu topMenu=new TopMenu();
+        FollowSettingsPage follow= topMenu.selectFollowSettings();
         String keywordToFollow = "iPhone 6s";
         if (follow.assertIsFollowed(keywordToFollow)) {
             follow.unfollow(keywordToFollow);

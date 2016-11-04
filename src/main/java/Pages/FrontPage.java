@@ -12,7 +12,7 @@ public class FrontPage extends Base {
 
 	public FrontPage(EventFiringWebDriver edriver) {
 		super(edriver);
-        String url = "http://novamanus.icb.bg:3001/";
+        String url = "http://novamanus.icb.bg:3001";
         visit(url);
 		isDisplayed(loginBtn,10);
 	}

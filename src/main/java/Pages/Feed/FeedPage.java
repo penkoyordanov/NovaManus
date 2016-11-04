@@ -28,6 +28,10 @@ public class FeedPage extends Base {
 
     private By searchBtn = By.xpath("//*[@class='fa fa-search']");
 
+    private static By countrySelect = By.xpath("//advanced-search/div/form/div[1]/select");
+
+    private By citySelect = By.xpath("//advanced-search/div/form/div[2]/select");
+
 
     public FeedPage(EventFiringWebDriver edriver) {
         super(edriver);
@@ -51,17 +55,15 @@ public class FeedPage extends Base {
         return this;
     }
 
-    public FeedPage selectCountry(String countryToSelect) {
-        isDisplayed(By.xpath("//advanced-search/div/form/div[1]/select/option[text()='" + countryToSelect + "']"), 10);
-        Select cSelect = new Select(find(By.xpath("//advanced-search/div/form/div[1]/select")));
-        cSelect.selectByVisibleText(countryToSelect);
+    public FeedPage selectCountry(String country) {
+        isDisplayed(By.xpath("//advanced-search/div/form/div[1]/select/option[text()='" + country + "']"), 10);
+        selectFromDrpdownByVisibleText(countrySelect,country);
         return this;
     }
 
-    public FeedPage selectCity(String cityToSelect) {
-        isDisplayed(By.xpath("//advanced-search/div/form/div[2]/select/option[text()='" + cityToSelect + "']"), 10);
-        Select cSelect = new Select(find(By.xpath("//advanced-search/div/form/div[2]/select")));
-        cSelect.selectByVisibleText(cityToSelect);
+    public FeedPage selectCity(String city) {
+        isDisplayed(By.xpath("//advanced-search/div/form/div[2]/select/option[text()='" + city + "']"), 10);
+        selectFromDrpdownByVisibleText(citySelect,city);
         return this;
     }
 
@@ -119,15 +121,6 @@ public class FeedPage extends Base {
     }
 
     public String getValueOfTopAdByAttributeAd(String attribute) {
-        /*if (attribute.equals("title")){
-            return getTextOfElement(By.xpath("//ad-tile[1]/descendant::h3"));
-		}else if (attribute.equals("time")){
-			return getTextOfElement(By.xpath("//ad-tile[1]/descendant::div[@class='time']"));
-		}else if (attribute.equals("distance")){
-			return getTextOfElement(By.xpath("//ad-tile[1]/descendant::ad-location/span/span"));
-		}else (attribute.equals("publisher")){
-			return eDriver.findElement(By.xpath("//ad-tile[1]/descendant::div[@class='sold-username']")).getText();
-		}*/
         String value = "";
         switch (attribute) {
             case "title":
@@ -148,26 +141,6 @@ public class FeedPage extends Base {
         return value;
     }
 
-	/*public String getTitleTopAdvertise(){
-        isDisplayed(By.xpath("//ad-tile[1]/descendant::h3"),10);
-		return getTextOfElement(By.xpath("//ad-tile[1]/descendant::h3"));
-	}*/
-	/*public String getTimeTopAd(){
-		return getTextOfElement(By.xpath("//ad-tile[1]/descendant::div[@class='time']"));
-	}*/
-
-   /* public String getDistanceTopAd(){
-        return getTextOfElement(By.xpath("//ad-tile[1]/descendant::ad-location/span/span"));
-    }*/
-
-   /* public String getPublisherOfTopAd(){
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return eDriver.findElement(By.xpath("//ad-tile[1]/descendant::div[@class='sold-username']")).getText();
-    }*/
 
     public boolean assertTopAdImage() {
         return isDisplayed(By.xpath("//ad-tile[1]/descendant::app-image/img[contains(@src,'https')][@alt='Live Feed Image']"));
@@ -188,9 +161,7 @@ public class FeedPage extends Base {
     }
 
     public boolean assertCityAppearedSearchField(String city, String country) {
-        ////div[@class='live-feed-search']//div[@class='lfsk-item']//text()
         isDisplayed(By.xpath("//div[@class='live-feed-search']//div[@class='lfsk-item']"));
-        System.out.println(getTextOfElement(By.xpath("//div[@class='live-feed-search']//div[@class='lfsk-item']")));
         return getTextOfElement(By.xpath("//div[@class='live-feed-search']//div[@class='lfsk-item']")).equals(city + " " + country);
     }
 

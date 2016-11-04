@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -77,5 +78,10 @@ public class Base {
 	protected final void waitUntilElementDisappear(final By locator, Integer timeout){
 		timeout=timeout !=null?timeout:5;
 		new WebDriverWait(eDriver, timeout).until(ExpectedConditions.invisibilityOfElementLocated(locator));
+	}
+
+	protected void selectFromDrpdownByVisibleText(By locator, String selectText) {
+		Select select = new Select(find(locator));
+		select.selectByVisibleText(selectText);
 	}
 }

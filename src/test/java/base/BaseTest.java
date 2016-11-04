@@ -27,14 +27,7 @@ public class BaseTest {
 	}
 
 	protected void shutDown() {
-		eDriver.close();
-		try {
-			Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            System.out.println(e);
-		}finally {
-			eDriver.quit();
-		}
+		eDriver.quit();
 	}
 
 }

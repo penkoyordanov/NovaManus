@@ -1,14 +1,14 @@
 package Pages.Signup;
 
-import helpers.SQL.GetRegistrationCode;
+import Pages.Browser.Browser;
+import Pages.Common.Base;
+import helpers.SQL.GetDataFromDB;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.Select;
-import Pages.Common.Base;
-import Pages.Browser.Browser;
 
 public class SignUpPage extends Base {
 //	WebDriverWait wait;
@@ -125,13 +125,12 @@ public class SignUpPage extends Base {
 	}
 
 	private String getConfirmationCode(String email){
-//		GetRegistrationCode.setEmail(email);
-		return GetRegistrationCode.getRequestCode(email);
+		return GetDataFromDB.getRequestCode(email);
 	}
 
 	public SignUpStep2Page applyConfirmationCode(String email){
 		isDisplayed(By.xpath("//input[@placeholder='Enter code..']"));
-		String code=GetRegistrationCode.getRequestCode(email);
+		String code=GetDataFromDB.getRequestCode(email);
 		type(code,By.xpath("//input[@placeholder='Enter code..']"));
 		click(By.xpath("//button[text()='Proceed']"));
 		return new SignUpStep2Page(eDriver);

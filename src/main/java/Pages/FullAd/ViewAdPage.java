@@ -16,6 +16,7 @@ public class ViewAdPage extends Base {
 	private By adTitle=By.xpath("//article[@class='view-add-detail']/h1");
 
 	private By adDescription = By.xpath("//div[@class='va-description']/trimmable//p");
+	private By map = By.id("map");
 
 
 
@@ -102,23 +103,6 @@ public class ViewAdPage extends Base {
 					isCategoryDisplayed = true;
 				}break;
 		}
-		/*if (category.equals("Sell") || category.equals("Rent")) {
-			if (getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[1]")).trim().equals(currency + " " + price)){
-						isCategoryDisplayed=true;
-					}	
-		} else if (category.equals("Give away")) {
-			if(getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[2]"))
-					.trim().equals("Free")){
-				isCategoryDisplayed=true;
-			}
-					
-
-		} else {
-			if(getTextOfElement(By.xpath("//article[@class='view-add-detail']/descendant::h2[2]"))
-					.trim().equals(category)){
-				isCategoryDisplayed=true;
-			}
-		}*/
 		return isCategoryDisplayed;
 	}
 	
@@ -133,6 +117,10 @@ public class ViewAdPage extends Base {
 
 	public Boolean isImageAttachedToAdvertise(String imageSource){
 		return isDisplayed(By.xpath("//article[@class='view-add-images']//adv-image//img[contains(@src,'" + imageSource + "')]"), 10);
+	}
+
+	public boolean isMapDisplayed(){
+		return isDisplayed(map);
 	}
 
 }

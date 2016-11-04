@@ -1,28 +1,26 @@
 package TestOnFullAd;
 
+import Pages.FullAd.ViewAdPage;
+import Pages.NewAdPage;
+import Pages.Profile.ProfilePage;
 import base.BaseTest;
 import helpers.GetRandomFile;
+import helpers.SQL.GetDataFromDB;
 import helpers.TestDataFaker;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
-
-import static org.testng.Assert.assertNotEquals;
-import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.assertEquals;
-
-
-import Pages.NewAdPage;
-import Pages.Profile.ProfilePage;
-import Pages.FullAd.ViewAdPage;
+import org.testng.annotations.Test;
 
 import java.util.Map;
 
+import static org.testng.Assert.*;
+
 public class AdDetailsTest extends BaseTest {
 
-    private static final String pointOfSaleDefault = "Camí Pui d'Olivesa, AD600 Sant Julià de Lòria, Andorra";
-    private static final String fullName = "Lori\nScott";
+    private String pointOfSaleDefault;
+    private String fullName;
+    private String epxpectedPublisherPhone;
     private static final String userName = "lscott1k@ftc.gov";
     private static final String password = "$aLamura234";
     private static final String currencyDefault = "€";
@@ -31,6 +29,10 @@ public class AdDetailsTest extends BaseTest {
 
     @BeforeMethod
     public void setUp() {
+        Map<String,String> userDetails=GetDataFromDB.getUserDetails(userName);
+        this.fullName=userDetails.get("firstName")+"\n"+userDetails.get("lastName");
+        this.pointOfSaleDefault=userDetails.get("address");
+        this.epxpectedPublisherPhone=userDetails.get("phone");
         super.setUpBrowser();
         feed = super.signIn(userName, password);
         // Click to "Make New ad" button
@@ -41,17 +43,17 @@ public class AdDetailsTest extends BaseTest {
     @Test(description = "Verify details of advertisement", enabled = true)
     public void VerifyViewAdDetailsAreAsEnteredTest() {
         NewAdPage makeAd = feed.clickMakeNewAdButton();
-        makeAd = makeAd.selectCategory(NewAdValues.get("category"));
-        makeAd = makeAd.selectCondition(NewAdValues.get("condition"), NewAdValues.get("category"));
-        makeAd = makeAd.typeTitle(NewAdValues.get("title"));
-        makeAd = makeAd.typeDescription(NewAdValues.get("description"));
+        makeAd.selectCategory(NewAdValues.get("category"));
+        makeAd.selectCondition(NewAdValues.get("condition"), NewAdValues.get("category"));
+        makeAd.typeTitle(NewAdValues.get("title"));
+        makeAd.typeDescription(NewAdValues.get("description"));
         makeAd.uploadPhoto(GetRandomFile.getRandomFileToUpload());
 
         //Storing source of uploaded image
         String uploadedImageSrc = makeAd.getBlobSourceUrl();
 
-        makeAd = makeAd.typeKeywords(keyword);
-        makeAd = makeAd.clickAddKeywordBtn();
+        makeAd.typeKeywords(keyword);
+        makeAd.clickAddKeywordBtn();
         makeAd.typePrice(NewAdValues.get("price"), NewAdValues.get("category"));
 
         ProfilePage profile = makeAd.clickPublishBtn();
@@ -71,9 +73,8 @@ public class AdDetailsTest extends BaseTest {
         assertEquals(ad.getPointOfSale(), pointOfSaleDefault, "Address is not as exected");
         assertTrue(ad.isImageAttachedToAdvertise(uploadedImageSrc), "Uploaded image is not attached to the advertise");
 
-        assertEquals(ad.getEmail(), "mailto:backupemail@novamanus.com", "Email is not as exected");
-
-        //assertEquals(ad.getPhone(), "tel:+359123456781", "Phone is not as exected");
+        assertEquals(ad.getPhone(), "tel:"+epxpectedPublisherPhone, "Phone is not as exected");
+        assertTrue(ad.isMapDisplayed(), "Map is not displayed");
 
         ad.assertKeywordsDisplayed(keyword);
 

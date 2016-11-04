@@ -50,8 +50,8 @@ public class JSONtoSQL {
         return String.format((String) parseJsonFromFile().get("getFollowersbyKeywordSQL"),keyword);
     }
 
-    public static String getAdsWithKeywordSQL(String areaName){
-        return String.format((String) parseJsonFromFile().get("getAdsWithKeywordSQL"),areaName);
+    public static String getAdsWithKeywordSQL(String keyword){
+        return String.format((String) parseJsonFromFile().get("getAdsWithKeywordSQL"),keyword);
     }
 
     public static String selectUsers(){
@@ -62,8 +62,12 @@ public class JSONtoSQL {
         return (String) parseJsonFromFile().get("selectUsers");
     }
 
+    public static String getUserDetailsSQL(String email){
+        return String.format((String) parseJsonFromFile().get("getUserDetails"),email);
+    }
+
 
     public static void main(String[] args) {
-        System.out.println(getAdsInArea("Sofia"));
+        System.out.println(getAdsWithKeywordSQL("iphone 6s"));
     }
 }
