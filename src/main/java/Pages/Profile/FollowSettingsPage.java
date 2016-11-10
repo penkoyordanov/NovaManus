@@ -39,10 +39,10 @@ public class FollowSettingsPage extends Base {
         int statisticCount = 0;
         switch (statisticName) {
             case "followers":
-                statisticCount = Integer.parseInt(getTextOfElement((By.xpath("//suggestion-Item/li/strong[starts-with(.,'" + followedItem + "')]/../span[1]"))));//followers
+                statisticCount = Integer.parseInt(getTextOfElement((By.xpath("//suggestion-Item/li/strong[contains(.,'" + followedItem + "')]/../span[1]"))));//followers
                 break;
             case "ads":
-                statisticCount = Integer.parseInt(getTextOfElement((By.xpath("//suggestion-Item/li/strong[starts-with(.,'" + followedItem + "')]/../span[2]")))); //related ads
+                statisticCount = Integer.parseInt(getTextOfElement((By.xpath("//suggestion-Item/li/strong[contains(.,'" + followedItem + "')]/../span[2]")))); //related ads
                 break;
         }
         return statisticCount;
@@ -72,7 +72,7 @@ public class FollowSettingsPage extends Base {
     }
 
     public boolean assertIsFollowed(String follow){
-        return isDisplayed(By.xpath("//div[@class='follow-body keywords']//strong[text()='"+follow+"']"),10);
+        return isDisplayed(By.xpath("//div[@class='follow-container']//strong[contains(.,'"+follow+"')]"),5);
     }
 
     private Boolean assertItemIsUnfollowed(String itemToCheck) {

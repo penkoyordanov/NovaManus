@@ -42,7 +42,7 @@ public class GetDataFromDB extends SQLConnectionBase{
 
     public static void main(String[] args) {
         //System.out.println(getFollowersByKeyword("iPhone 6s"));
-        System.out.println(getAdsWithKeyword("iPhone 6s"));
+        System.out.println(getAdsWithKeyword("iphone 6S"));
     }
 
     public static String getRequestCode(String email) {

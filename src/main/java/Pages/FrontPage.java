@@ -6,13 +6,13 @@ import Pages.Common.Base;
 import Pages.Signup.SignUpPage;
 
 public class FrontPage extends Base {
-    //	static String url = "http://novamanus-test.azurewebsites.net/";
+    	static String url = "http://novamanus-test.azurewebsites.net/";
     private final static String title = "NOVAMANUS";
 
 
 	public FrontPage(EventFiringWebDriver edriver) {
 		super(edriver);
-        String url = "http://novamanus.icb.bg:3001";
+//        String url = "http://novamanus.icb.bg:3001";
         visit(url);
 		isDisplayed(loginBtn,10);
 	}

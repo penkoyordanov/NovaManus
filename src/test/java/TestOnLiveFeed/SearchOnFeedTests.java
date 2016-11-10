@@ -41,7 +41,7 @@ public class SearchOnFeedTests extends BaseTest {
 
     public static Object[][] searchCriterias() {
 
-        return new Object[][] { { "Norway", "Oslo" }, { "Netherlands", "Strijensas" },{ "Belgium", "Langemark-Poelkapelle" }};
+        return new Object[][] { { "Norway", "Oslo" }, { "United Kingdom", "London" },{ "Belgium", "Leuven" }};
 
     }
 }

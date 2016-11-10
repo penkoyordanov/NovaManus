@@ -65,11 +65,11 @@ public class FollowTests extends BaseTest {
         assertTrue(follow.assertIsFollowed(areaToFollow),"Area is not in the Area list");
     }
 
-    @Test(invocationCount = 3,description = "Searh and follow another user ")
+    @Test(description = "Searh and follow another user ")
     public void FollowKeyword() {
         TopMenu topMenu=new TopMenu();
         FollowSettingsPage follow= topMenu.selectFollowSettings();
-        String keywordToFollow = "iPhone 6s";
+        String keywordToFollow = "iphone 6S";
         if (follow.assertIsFollowed(keywordToFollow)) {
             follow.unfollow(keywordToFollow);
         }
