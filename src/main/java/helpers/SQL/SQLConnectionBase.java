@@ -12,24 +12,12 @@ public class SQLConnectionBase {
     private static Connection con;
     private static ResultSet res;
 
-    protected static void executeScriptNoReturnData(String query){
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection con = DriverManager.getConnection(JSONtoSQL.getConncectionString());
-            stm = con.createStatement();
-            stm.executeUpdate(query);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     protected static ArrayList<String[]> getResultFromDB(String query) {
         ArrayList<String[]> records = new ArrayList<String[]>();
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            String driver = "net.sourceforge.jtds.jdbc.Driver";
             con = DriverManager.getConnection(JSONtoSQL.getConncectionString());
+            Class.forName(driver);
             stm = con.createStatement();
 
 

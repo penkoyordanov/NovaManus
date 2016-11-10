@@ -4,7 +4,7 @@
   <listeners>
     <listener class-name="listeners.TestListener"/>
   </listeners>
-  <test name="CRUD advertisement">
+  <!--<test name="CRUD advertisement">
     <classes>
       <class name="MakeNewAdTest"/>
        <class name="ManageAdvertiseTests"/>
@@ -20,17 +20,17 @@
     <classes>
       <class name="RegularSignUpTest"/>
     </classes>
-  </test>
+  </test>-->
   <test name="Follow">
     <classes>
       <class name="FollowTests"/>
     </classes>
   </test>
-  <test name="Feed">
+ <!-- <test name="Feed">
     <classes>
       <class name="StartNewChat"/>
       <class name="TestOnLiveFeed.FeedFilterByCategory"/>
       <class name="TestOnLiveFeed.SearchOnFeedTests"/>
     </classes>
-  </test>
+  </test>-->
 </suite> <!-- Suite -->
